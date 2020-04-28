@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once "./config/utils.php";
+$loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,11 +83,11 @@ require_once "./config/utils.php";
                     <div class="row">
                         <div class="col-md-8 col-sm-8">
                             <h2>send a message</h2>
-                            <form action="#">
-                                <input type="text" name="rq-contact-name" id="rq-contact-name" placeholder="Name">
-                                <input type="email" name="rq-contact-email" id="rq-contact-email" placeholder="Email">
-                                <input type="text" name="rq-contact-web" id="rq-contact-web" placeholder="Web">
-                                <textarea name="rq-contact-message" id="rq-contact-message" cols="30" rows="5"
+                            <form action="<?= ADMIN_URL . 'contacts/save-add.php' ?>" method="POST">
+                                <input type="text" name="name"  placeholder="Name">
+                                <input type="email" name="email" placeholder="Email">
+                                <input type="text" name="phone" placeholder="phone_number">
+                                <textarea name="message"  cols="30" rows="5"
                                     placeholder="Message"></textarea>
                                 <button type="submit">Submit</button>
                             </form>
