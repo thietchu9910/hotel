@@ -1,6 +1,6 @@
 <?php
 #quy dinh constants
-define('BASE_URL' , 'http://localhost/thietcv_ph09326/');
+define('BASE_URL' , 'http://localhost/hotel/');
 define('ADMIN_URL', BASE_URL . 'admin/');
 
 
@@ -15,7 +15,7 @@ define("INACTIVE", -1);
 function getdbConn(){
     try {
         $host = "127.0.0.1";
-        $dbname = "duan1_db";
+        $dbname = "duan1";
         $dbusername = "root";
         $dbpass = "";
 
