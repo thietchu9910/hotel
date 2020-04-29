@@ -6,6 +6,8 @@ $loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
 //lấy dữ liệu bảng web_settings
 $getWebsettingQuery=" select * from web_setting";
 $getRoomQuery = "select * from room limit 3";
+$getServiceQuery = "select * from service limit 4";
+$service = queryExecute($getServiceQuery, true);
 $room = queryExecute($getRoomQuery, true);
 $websetting = queryExecute($getWebsettingQuery,false);
 ?>
@@ -78,6 +80,7 @@ $websetting = queryExecute($getWebsettingQuery,false);
     <div id="home2-banner" class="rq-banner-area">
         <div class="rq-banner-area-mask">
             <div class="container">
+                <form action="select-room-grid.php" method="post">
                 <div class="bq-banner-text">
                     <div class="bq-banner-text-middle">
                         <img src="<?=ADMIN_ASSET_URL ?>img/<?=$websetting['small-logo'];?>" alt="Responsive image" />
@@ -159,6 +162,8 @@ $websetting = queryExecute($getWebsettingQuery,false);
                         </div>
                     </div>
                 </div>
+
+                </form>
             </div>
         </div>
     </div><!-- / rq-banner-area-->
@@ -193,7 +198,7 @@ $websetting = queryExecute($getWebsettingQuery,false);
     <section class="rq-room-package-section">
         <div class="container">
             <div class="row">
-                <h2 class="text-center">ROOMS &amp; PACKAGES</h2>
+                <h2 class="text-center">ROOMS &amp; PACKAGES</h2>   
 
                 <div class="rq-room-package-wrapper">
                     <!-- PACKAGE ITEM -->
@@ -263,6 +268,8 @@ $websetting = queryExecute($getWebsettingQuery,false);
                         </a>
                     </div>
                     <!-- END -->
+
+                    
                 </div>
             </div>
         </div>

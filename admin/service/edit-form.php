@@ -5,8 +5,8 @@ checkAdminLoggedIn();
 // get id from url
 $id = isset($_GET['id']) ? $_GET['id'] : -1;
 // get data from vehicle types tables by id
-$getHome_GalleriesQuery = "select * from home_galleries where id = '$id'";
-$home_galleriesEdit = queryExecute($getHome_GalleriesQuery, false);
+$getServiceQuery = "select * from service where id = '$id'";
+$serviceEdit = queryExecute($getServiceQuery, false);
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,7 +31,7 @@ $home_galleriesEdit = queryExecute($getHome_GalleriesQuery, false);
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Sửa loại phương tiện</h1>
+                            <h1 class="m-0 text-dark">Edit service</h1>
                         </div><!-- /.col -->
 
                     </div><!-- /.row -->
@@ -44,34 +44,30 @@ $home_galleriesEdit = queryExecute($getHome_GalleriesQuery, false);
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
 
-                    <form id="add-vehicle-type-form" action="<?= ADMIN_URL . 'home_galleries/save-edit.php' ?>" method="post" enctype="multipart/form-data">
+                    <form id="edit-service-form" action="<?= ADMIN_URL . 'service/save-edit.php' ?>" method="post" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-6">
+                            <input type="text" class="form-control" name="id" value="<?= $serviceEdit['id'] ?>" hidden>
+
                                 <div class="form-group">
-                                    <label for="">Image_url<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="img_text" value="<?php $home_galleriesEdit['img_text'] ?>">
-                                    <?php if (isset($_GET['img_urlerr'])) : ?>
-                                        <label class="error"><?= $_GET['img_urlerr'] ?></label>
+                                    <label for="">Name<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="name" value="<?php echo $serviceEdit['name']?>">
+                                    <?php if (isset($_GET['nameerr'])) : ?>
+                                        <label class="error"><?= $_GET['nameerr'] ?></label>
                                     <?php endif; ?>
                                 </div>
                                 
-                                <div class="form-group">
-                                    <label for="">Image_link<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="img_link" value="<?php $home_galleriesEdit['img_link'] ?>">
-                                    <?php if (isset($_GET['img_linkerr'])) : ?>
-                                        <label class="error"><?= $_GET['img_linkerr'] ?></label>
-                                    <?php endif; ?>
-                                </div>
+                              
                                 <div class="form-group">
                                     <label for="">Short_desc<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="short_desc" value="<?php $home_galleriesEdit['short_desc'] ?>">
+                                    <input type="text" class="form-control" name="short_desc" value="<?= $serviceEdit['short_desc'] ?>">
                                     <?php if (isset($_GET['Short_descerr'])) : ?>
                                         <label class="error"><?= $_GET['Short_descerr'] ?></label>
                                     <?php endif; ?>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Price<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="price" value="<?php $home_galleriesEdit['price'] ?>">
+                                    <input type="number" class="form-control" name="price" value="<?= $serviceEdit['price'] ?>">
                                     <?php if (isset($_GET['priceerr'])) : ?>
                                         <label class="error"><?= $_GET['priceerr'] ?></label>
                                     <?php endif; ?>
@@ -85,13 +81,13 @@ $home_galleriesEdit = queryExecute($getHome_GalleriesQuery, false);
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="inputGroupFile01" name="img_url" onchange="encodeImageFileAsURL(this)">
+                                        <input type="file" class="custom-file-input" id="inputGroupFile01" name="img_url"  onchange="util.convertImg(this, '#preview-img', '<?= BASE_URL . $serviceEdit['img_url'] ?>')">
                                         <label class="custom-file-label" for="inputGroupFile01">Ảnh<span class="text-danger">*</span></label>
                                     </div>
                                 </div>
                                 <div class="col-12 d-flex justify-content-start">
-                                    <button type="submit" class="btn btn-primary">Tạo</button>&nbsp;
-                                    <a href="<?= ADMIN_URL . 'home_galleries' ?>" class="btn btn-danger">Hủy</a>
+                                    <button type="submit" class="btn btn-primary">Cập nhật</button>&nbsp;
+                                    <a href="<?= ADMIN_URL . 'service' ?>" class="btn btn-danger">Hủy</a>
                                 </div>
                             </div>
                     </form>
@@ -109,19 +105,19 @@ $home_galleriesEdit = queryExecute($getHome_GalleriesQuery, false);
     <!-- ./wrapper -->
     <?php include_once '../_share/script.php'; ?>
     <script>
-        $('#edit-vehicle-type-form').validate({
+        $('#edit-service-form').validate({
             rules: {
                 name: {
                     required: true,
                     maxlength: 191,
                     remote: {
-                        url: "<?= ADMIN_URL . 'home_galleries/verify-name-type-existed.php' ?>",
+                        url: "<?= ADMIN_URL . 'service/verify-name-type-existed.php' ?>",
                         type: "post",
                         data: {
                             name: function() {
                                 return $("input[name='name']").val();
                             },
-                            id: <?= $home_GalleriesEdit['id']?>
+                            id: <?= $serviceEdit['id']?>
                         }
                     }
                 },
@@ -152,18 +148,7 @@ $home_galleriesEdit = queryExecute($getHome_GalleriesQuery, false);
                 }
             }
         });
-        function encodeImageFileAsURL(element) {
-            var file = element.files[0];
-            if (file === undefined) {
-                $('#preview-img').attr('src', "<?= DEFAULT_IMAGE ?>");
-                return false;
-            }
-            var reader = new FileReader();
-            reader.onloadend = function() {
-                $('#preview-img').attr('src', reader.result)
-            }
-            reader.readAsDataURL(file);
-        }   
+      
     </script>
 </body>
 

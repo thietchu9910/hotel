@@ -6,20 +6,20 @@ checkAdminLoggedIn();
 $keyword = isset($_GET['keyword']) == true ? $_GET['keyword'] : "";
 $status = isset($_GET['status']) == true ? $_GET['status'] : "";
 // get vehicle types query
-$gethome_galleriesQuery = "select * from home_galleries";
+$getserviceQuery = "select * from service";
 // điều kiện tìm kiếm
 if ($keyword !== "" && $keyword !== false) {
-    $gethome_galleriesQuery .= " where (name like '%$keyword%'
+    $getserviceQuery .= " where (name like '%$keyword%'
                                     or seat like '%$keyword%')";
     if ($status !== "" && $status !== false) {
-        $gethome_galleriesQuery .= " and status = '$status'";
+        $getserviceQuery .= " and status = '$status'";
     }
 }else {
     if ($status !== "" && $status !== false) {
-        $gethome_galleriesQuery .= " where status = '$status'";
+        $getserviceQuery .= " where status = '$status'";
     }
 }
-$home_galleries = queryExecute($gethome_galleriesQuery, true);
+$service = queryExecute($getserviceQuery, true);
 
 ?>
 
@@ -88,31 +88,30 @@ $home_galleries = queryExecute($gethome_galleriesQuery, true);
                         <table class="table table-stripped">
                             <thead>
                                 <th>ID</th>
-                                <th>Img_text</th>
+                                <th>Name</th>
                                 <th width="100px">Img_url</th>
-                                <th>Img_link</th>
                                 <th>Short_desc</th>
                                 <th>Price</th>
                                 <th>
-                                    <a href="<?php echo ADMIN_URL . 'home_galleries/add-form.php' ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm</a>
+                                    <a href="<?php echo ADMIN_URL . 'service/add-form.php' ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm</a>
                                 </th>
                             </thead>
                             <tbody>
-                                <?php foreach ($home_galleries as $rg) : ?>
+                                <?php foreach ($service as $rg) : ?>
                                     <tr>
                                         <td><?php echo $rg['id'] ?></td>
-                                        <td><?php echo $rg['img_text'] ?></td>
+                                        <td><?= $rg['name']?></td>
                                         <td>
                                             <img class="img-fluid" src="<?= BASE_URL . $rg['img_url'] ?>" alt="">
                                         </td>
-                                        <td><?= $rg['img_link']?></td>
                                         <td><?= $rg['short_desc']?></td> 
                                         <td><?= $rg['price']?></td>
+
                                         <td>
-                                            <a href="<?php echo ADMIN_URL . 'home_galleries/edit-form.php?id=' . $rg['id'] ?>" class="btn btn-sm btn-info">
+                                            <a href="<?php echo ADMIN_URL . 'service/edit-form.php?id=' . $rg['id'] ?>" class="btn btn-sm btn-info">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
-                                            <a href="<?php echo ADMIN_URL . 'home_galleries/remove.php?id=' . $rg['id'] ?>" class="btn-remove btn btn-sm btn-danger">
+                                            <a href="<?php echo ADMIN_URL . 'service/remove.php?id=' . $rg['id'] ?>" class="btn-remove btn btn-sm btn-danger">
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                         </td>

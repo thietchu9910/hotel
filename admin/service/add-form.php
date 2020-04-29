@@ -27,7 +27,7 @@ checkAdminLoggedIn();
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Add home_galleries</h1>
+                            <h1 class="m-0 text-dark">Add service</h1>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
@@ -38,24 +38,18 @@ checkAdminLoggedIn();
             <section class="content">
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
-                    <form id="add-vehicle-type-form" action="<?= ADMIN_URL . 'home_galleries/save-add.php' ?>" method="post" enctype="multipart/form-data">
+                    <form id="add-vehicle-type-form" action="<?= ADMIN_URL . 'service/save-add.php' ?>" method="post" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">Image_url<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="img_text">
-                                    <?php if (isset($_GET['img_urlerr'])) : ?>
-                                        <label class="error"><?= $_GET['img_urlerr'] ?></label>
+                                    <label for="">Name<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="name">
+                                    <?php if (isset($_GET['nameerr'])) : ?>
+                                        <label class="error"><?= $_GET['nameerr'] ?></label>
                                     <?php endif; ?>
                                 </div>
                                 
-                                <div class="form-group">
-                                    <label for="">Image_link<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="img_link">
-                                    <?php if (isset($_GET['img_linkerr'])) : ?>
-                                        <label class="error"><?= $_GET['img_linkerr'] ?></label>
-                                    <?php endif; ?>
-                                </div>
+                               
                                 <div class="form-group">
                                     <label for="">Short_desc<span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" name="short_desc">
@@ -65,7 +59,7 @@ checkAdminLoggedIn();
                                 </div>
                                 <div class="form-group">
                                     <label for="">Price<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="price">
+                                    <input type="number" class="form-control" name="price">
                                     <?php if (isset($_GET['priceerr'])) : ?>
                                         <label class="error"><?= $_GET['priceerr'] ?></label>
                                     <?php endif; ?>
@@ -86,7 +80,7 @@ checkAdminLoggedIn();
                                 </div>
                                 <div class="col-12 d-flex justify-content-start">
                                     <button type="submit" class="btn btn-primary">Tạo</button>&nbsp;
-                                    <a href="<?= ADMIN_URL . 'home_galleries' ?>" class="btn btn-danger">Hủy</a>
+                                    <a href="<?= ADMIN_URL . 'service' ?>" class="btn btn-danger">Hủy</a>
                                 </div>
                             </div>
                     </form>

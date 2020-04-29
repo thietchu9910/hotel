@@ -2,8 +2,7 @@
 session_start();
 include_once "../../config/utils.php";
 checkAdminLoggedIn();
-$img_text = trim($_POST['img_text']);
-$img_link = trim($_POST['img_link']);
+$name = trim($_POST['name']);
 $short_desc = trim($_POST['short_desc']);
 $price = trim($_POST['price']);
 $image = $_FILES['img_url'];
@@ -14,11 +13,10 @@ if($image['size'] > 0){
     $filename = "public/admin/img/" . $filename;
 }
 
-$insertHome_galleriesQuery = "insert into home_galleries
-                          (img_text, img_url, img_link, short_desc, price)
+$insertserviceQuery = "insert into service
+                          (img_url, short_desc, price, name)
                     values
-                          ('$img_text', '$filename', '$img_link', '$short_desc', '$price')";
-queryExecute($insertHome_galleriesQuery, false);
-//dd($insertHome_galleriesQuery);
-header("location: " . ADMIN_URL . "home_galleries");
+                          ('$filename', '$short_desc', '$price', '$name')";
+queryExecute($insertserviceQuery, false);
+header("location: " . ADMIN_URL . "service");
 die;

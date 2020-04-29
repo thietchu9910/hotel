@@ -28,17 +28,17 @@ try {
     $mail->CharSet = 'utf8';                                            // Send using SMTP
     $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-    $mail->Username   = 'bi10hanhphuc@gmail.com';                     // SMTP username
-    $mail->Password   = 'anhday11';                               // SMTP password
+    $mail->Username   = 'thietcv@gmail.com';                     // SMTP username
+    $mail->Password   = 'taokhongbiet';                               // SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
     $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 
     //Recipients
-    $mail->setFrom('bi1hanhphuc@gmail.com', 'Hong Son');
+    $mail->setFrom('thietcv@gmail.com', 'Doan xem');
     foreach ($listname as $nameEmail) {
         $mail->addAddress($nameEmail);
     }
-    $mail->addReplyTo('bi1hanhphuc@gmail.com', 'Hong Son');
+    $mail->addReplyTo('thietcv@gmail.com', 'Doan xem');
 
     // Attachments
     // $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
