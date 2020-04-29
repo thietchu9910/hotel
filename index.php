@@ -5,6 +5,8 @@ require_once './config/utils.php';
 $loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
 //lấy dữ liệu bảng web_settings
 $getWebsettingQuery=" select * from web_setting";
+$getRoomQuery = "select * from room limit 3";
+$room = queryExecute($getRoomQuery, true);
 $websetting = queryExecute($getWebsettingQuery,false);
 ?>
 <!DOCTYPE html>
@@ -170,7 +172,7 @@ $websetting = queryExecute($getWebsettingQuery,false);
                 </div>
                 <p><?= $websetting['slogan'];?></p>
                 <div class="sign">
-                    <img src="<?= ADMIN_ASSET_URL ?>img/<?= $websetting['slogan_author'];?>" class="img-responsive"
+                    <img src="<?= $websetting['slogan_author'];?>" class="img-responsive"
                         alt="Responsive image" />
                 </div>
                 <div class="rq-pal-bg">
@@ -275,55 +277,26 @@ $websetting = queryExecute($getWebsettingQuery,false);
             <h2 class="text-center">what we offer</h2>
             <div class="container">
                 <div class="row">
+                    <?php foreach ($room as $r) :?>
                     <div class="col-md-4 col-sm-6 col-xs-12 rq-our-offer">
                         <div class="thumbnail">
                             <div class="rq-img-wrapper">
                                 <picture>
-                                    <source media="(min-width: 768px)" srcset=<?= ADMIN_ASSET_URL ?>img/palace-img1.jpg>
-                                    <img alt="Image" src="<?= ADMIN_ASSET_URL ?>img/palace-img1.jpg"
-                                        srcset=<?= ADMIN_ASSET_URL ?>img/palace-img1.jpg>
+                                    <source media="(min-width: 768px)" srcset=<?= $r['featrue_image'] ?>>
+                                    <img alt="Image" src="<?= $r['featrue_image'] ?>"
+                                        srcset=<?= $r['featrue_image'] ?>>
                                 </picture>
                             </div>
 
                             <div class="caption">
-                                <h3><a href="#">large cafe</a></h3>
-                                <p>point of using that has more less normal distribution is among</p>
-                                <h4 class="special-span"><span>$250</span>Night</h4>
+                                <h3><a href="#"><?= $r['name']?></a></h3>
+                                <p><?= $r['short_desc']?></p>
+                                <h4 class="special-span"><span>$<?= $r['price']?></span>Night</h4>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12 rq-our-offer">
-                        <div class="thumbnail">
-                            <div class="rq-img-wrapper">
-                                <picture>
-                                    <source media="(min-width: 768px)" srcset=<?= ADMIN_ASSET_URL ?>img/palace-img2.jpg>
-                                    <img alt="Image" src="<?= ADMIN_ASSET_URL ?>img/palace-img2.jpg"
-                                        srcset=<?= ADMIN_ASSET_URL ?>img/palace-img2.jpg>
-                                </picture>
-                            </div>
-                            <div class="caption">
-                                <h3><a href="#">rooftop cusine</a></h3>
-                                <p>point of using that has more less normal distribution is among</p>
-                                <h4 class="special-span"><span>$250</span>Night</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12 rq-our-offer">
-                        <div class="thumbnail">
-                            <div class="rq-img-wrapper">
-                                <picture>
-                                    <source media="(min-width: 768px)" srcset=<?= ADMIN_ASSET_URL ?>img/palace-img3.jpg>
-                                    <img alt="Image" src="<?= ADMIN_ASSET_URL ?>img/palace-img3.jpg"
-                                        srcset=<?= ADMIN_ASSET_URL ?>img/palace-img3.jpg>
-                                </picture>
-                            </div>
-                            <div class="caption">
-                                <h3><a href="#">premium living</a></h3>
-                                <p>point of using that has more less normal distribution is among</p>
-                                <h4 class="special-span"><span>$250</span>Night</h4>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endforeach;?>
+                    
                 </div>
             </div>
         </div>
@@ -331,33 +304,28 @@ $websetting = queryExecute($getWebsettingQuery,false);
     <!----------------/rq-slider-area-------------------------->
 
 
-    <div id="testimonial" class="rq-content-making-area">
-        <div class="container ">
-            <div class="rq-owl-carousel-content">
-                <div class="owl-carousel">
-                    <div class="rq-content-making-item">
-                        <div class="rq-content-logo text-center center-block">
-                            <i class="fa fa-quote-right" aria-hidden="true"></i>
-                        </div>
-                        <p class="text-center">Content making readable English desktop publishing packages editors point
-                            using is that making readable English desktop publishing packages editors point using it has
-                            a normal distribution as oppo</p>
-                        <p class="rq-special text-center">ADRAIN SMITH</p>
-                    </div>
-                    <div class="rq-content-making-item">
-                        <div class="rq-content-logo text-center center-block">
-                            <i class="fa fa-quote-right" aria-hidden="true"></i>
-                        </div>
-                        <p class="text-center">Content making readable English desktop publishing packages editors point
-                            using is making readable English desktop publishing packages editors point using it has a
-                            normal distribution as oppo</p>
-                        <p class="rq-special text-center">ADRAIN SMITH</p>
-                    </div>
-                </div>
-            </div>
+    <section class="rq-content-making-area">
+      <div class="container ">
+        <div class="rq-owl-carousel-content">
+           <div class="owl-carousel">
+             <div class="rq-content-making-item">
+             <div class="rq-content-logo text-center center-block">
+                <i class="fa fa-quote-right" aria-hidden="true"></i>
+             </div>
+              <p class="text-center">Content making readable English desktop publishing packages editors point using is that making readable English desktop publishing packages editors point using it has a normal distribution as oppo</p>
+              <p class="rq-special text-center">ADRAIN SMITH</p>
+           </div>
+           <div class="rq-content-making-item">
+             <div class="rq-content-logo text-center center-block">
+                <i class="fa fa-quote-right" aria-hidden="true"></i>
+             </div>
+              <p class="text-center">Content making readable English desktop publishing packages editors point using is making readable English desktop publishing packages editors point using it has a normal distribution as oppo</p>
+              <p class="rq-special text-center">ADRAIN SMITH</p>
+           </div>
+           </div>
         </div>
-        <!------/container -------->
-    </div><!-- / rq-content-making-area-->
+      </div><!------/container -------->
+    </section><!-- / rq-content-making-area-->
 
 
     <?php 

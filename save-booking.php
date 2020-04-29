@@ -15,8 +15,8 @@ $insertBookingQuery = "insert into booking
 queryExecute($insertBookingQuery, false);
 //dd($insertBookingQuery);
 
-$getBookingQuery = "select * from booking where room_id = $room_id";
+$getBookingQuery = "select * from booking where room_id = $room_id order by id desc";
 $booking = queryExecute($getBookingQuery, false);
 
-header("location: " . BASE_URL . "cart.php?id=".$booking['id'].'&&'.'mesge=active');
+header("location: " . BASE_URL . "cart.php?id=".$booking['id'].'&'.'mesge=active');
 die;

@@ -171,10 +171,8 @@ $room = queryExecute($getRoomQuery, false);
                             <!------------/rq-single-room-para---------------------->
                             <div class="single-room-text-custom">
                                 <ul class="nav">
-                                    <li role="presentation"><span class="badge"><i class="fa fa-check" aria-hidden="true"></i></span>Decorated room, proper air condioned</li>
-                                    <li role="presentation"> <span class="badge"><i class="fa fa-check" aria-hidden="true"></i></span>Saloon, gym, spa facilities</li>
-                                    <li role="presentation"><span class="badge"><i class="fa fa-check" aria-hidden="true"></i></span>24 hours room service</li>
-                                </ul>
+                                    <li role="presentation"><span class="badge"><i class="fa fa-check" aria-hidden="true"></i></span><?=$room['short_desc']?></li>
+                                    
                             </div>
                             <div class="rq-tabs">
                                 <ul class="nav nav-tabs">

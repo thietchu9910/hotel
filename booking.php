@@ -1,6 +1,8 @@
 <?php 
 session_start();
 require_once "./config/utils.php";
+$loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
+
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +44,7 @@ require_once "./config/utils.php";
                     <p>Login to add new listing </p>
 
                     <div class="rq-login-form">
-                        <form action="#">
+                        <form action="#" method="POST">
                             <input type="text" name="rq-user-name" id="rq-user-input" placeholder="User Name">
                             <input type="password" name="rq-user-password" id="rq-user-password" placeholder="Password">
                             <button type="submit">Login</button>

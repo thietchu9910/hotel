@@ -45,7 +45,7 @@ $booking = queryExecute($getBookingQuery, false);
           <p>Login to add new listing </p>
 
           <div class="rq-login-form">
-            <form action="#">
+            <form action="#" method="POST">
               <input type="text" name="rq-user-name" id="rq-user-input" placeholder="User Name">
               <input type="password" name="rq-user-password" id="rq-user-password" placeholder="Password">
               <button type="submit">Login</button>
@@ -88,8 +88,8 @@ $booking = queryExecute($getBookingQuery, false);
         <div class="col-md-4 col-sm-5 col-xs-12">
           <div class="cart-left-side">
             <h4>Subtotal <span class="label label-default pull-right">$250</span></h4>
-            <h3>total <span class="label label-default pull-right">$<?php echo $total ?></span></h3>
-            <a class="btn rq-btn-secondary form-control" href="<?= ADMIN_URL . 'save-edit.php'?>">update cart</a>
+            <h3>total <span class="label label-default pull-right">$<?= $room['price']?></span></h3>
+            <a class="btn rq-btn-secondary form-control" href="">update cart</a>
             <button class="rq-btn-primary form-control" type="submit">proceed checkout</button>
           </div>
         </div>

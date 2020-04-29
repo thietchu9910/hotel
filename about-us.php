@@ -1,6 +1,9 @@
 <?php 
 session_start();
 require_once "./config/utils.php";
+$loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
+$getOur_team = "select * form our_team";
+$our_team = queryExecute($getOur_team);
 ?>
 
 
@@ -44,7 +47,7 @@ require_once "./config/utils.php";
                     <p>Login to add new listing </p>
 
                     <div class="rq-login-form">
-                        <form action="#">
+                        <form action="#" method="POST">
                             <input type="text" name="rq-user-name" id="rq-user-input" placeholder="User Name">
                             <input type="password" name="rq-user-password" id="rq-user-password" placeholder="Password">
                             <button type="submit">Login</button>
@@ -110,90 +113,37 @@ require_once "./config/utils.php";
           <section id="our-team">
             <h2 class="text-center">Our TEam</h2>
             <div class="row">
+              <?php foreach ($our_team as $ot) : ?>
               <div class="rq-team-member col-md-4 col-sm-4 col-xs-12">
                 <div class="thumbnail view second-effect">
                   <div class="rq-image-wrapper">
                       <picture>
-                          <source media="(min-width: 768px)" srcset=<?= ADMIN_ASSET_URL ?>img/our-team-1.jpg>
-                          <img alt="Image" src="<?= ADMIN_ASSET_URL ?>img/our-team-1.jpg" srcset=<?= ADMIN_ASSET_URL ?>img/our-team-1.jpg>
+                          <source media="(min-width: 768px)" srcset=<?= $ot['image_url'] ?>>
+                          <img alt="Image" src="<?= $ot['image_url'] ?>" srcset=<?= $ot['image_url'] ?>>
                       </picture>
                        <ul class="mask">
                            <li class="rq-facebook">
-                              <a href="#" class="info"><img src="<?= ADMIN_ASSET_URL ?>img/facebook.png" alt="Facebook"/></a>   
+                              <a href="#" class="info"><img src="<?= $ot['facebook_url'] ?>" alt="Facebook"/></a>   
                            </li>
 
                            <li class="rq-twitter">
-                              <a href="#" class="info"><img src="<?= ADMIN_ASSET_URL ?>img/twitter.png" alt="Twitter"/></a>   
+                              <a href="#" class="info"><img src="<?= $ot['twiter_url'] ?>" alt="Twitter"/></a>   
                            </li>
                             
                             <li class="rq-linkedinf">
-                                <a href="#" class="info"><img src="<?= ADMIN_ASSET_URL ?>img/linkin.png" alt="Linkedin"/></a>
+                                <a href="#" class="info"><img src="<?= $ot['linked_in_url'] ?>" alt="Linkedin"/></a>
                             </li>
                       </ul>
                   </div>
                   <div class="caption">
-                    <h3><a href="#">deo PERU</a></h3>
-                    <p>Relationship Manager</p>
+                    <h3><a href="#"><?= $ot['member_name']?></a></h3>
+                    <p><?= $ot['position']?></p>
                   </div>
                 </div>
               </div>
+              <?php endforeach;?>
 
-              <div class="rq-team-member col-md-4 col-sm-4 col-xs-12">
-                <div class="thumbnail view second-effect">
-                  <div class="rq-image-wrapper">
-                      <picture>
-                          <source media="(min-width: 768px)" srcset=<?= ADMIN_ASSET_URL ?>img/our-team-2.jpg>
-                          <img alt="Image" src="<?= ADMIN_ASSET_URL ?>img/our-team-2.jpg" srcset=<?= ADMIN_ASSET_URL ?>img/our-team-2.jpg>
-                      </picture>
-                       <ul class="mask">
-                           <li class="rq-facebook">
-                              <a href="#" class="info"><img src="<?= ADMIN_ASSET_URL ?>img/facebook.png" alt="facebook" /></a>   
-                           </li>
-
-                           <li class="rq-twitter">
-                              <a href="#" class="info"><img src="<?= ADMIN_ASSET_URL ?>img/twitter.png" alt="twitter" /></a>   
-                           </li>
-                            
-                            <li class="rq-linkedinf">
-                                <a href="#" class="info"><img src="<?= ADMIN_ASSET_URL ?>img/linkin.png" alt="linkin" /></a>
-                            </li>
-                      </ul>
-                  </div>
-                  <div class="caption">
-                    <h3><a href="#">deo PERU</a></h3>
-                    <p>Relationship Manager</p>
-                  </div>
-                 
-                </div>
-              </div>
-
-              <div class="rq-team-member col-md-4 col-sm-4 col-xs-12">
-                <div class="thumbnail view second-effect">
-                  <div class="rq-image-wrapper">
-                      <picture>
-                          <source media="(min-width: 768px)" srcset=<?= ADMIN_ASSET_URL ?>img/our-team-3.jpg>
-                          <img alt="Image" src="<?= ADMIN_ASSET_URL ?>img/our-team-3.jpg" srcset=<?= ADMIN_ASSET_URL ?>img/our-team-3.jpg>
-                      </picture>
-                       <ul class="mask">
-                           <li class="rq-facebook">
-                              <a href="#" class="info"><img src="<?= ADMIN_ASSET_URL ?>img/facebook.png" alt="facebook" /></a>   
-                           </li>
-
-                           <li class="rq-twitter">
-                              <a href="#" class="info"><img src="<?= ADMIN_ASSET_URL ?>img/twitter.png" alt="twitter" /></a>   
-                           </li>
-                            
-                            <li class="rq-linkedinf">
-                                <a href="#" class="info"><img src="<?= ADMIN_ASSET_URL ?>img/linkin.png" alt="linkin" /></a>
-                            </li>
-                      </ul>
-                  </div>
-                  <div class="caption">
-                    <h3><a href="#">deo PERU</a></h3>
-                    <p>Relationship Manager</p>
-                  </div>
-                </div>
-              </div>
+              
             </div>
           </section><!-- / rq-about-us -->
         </div>
