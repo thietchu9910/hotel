@@ -7,7 +7,7 @@ $loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
 $getWebsettingQuery=" select * from web_setting";
 $getRoomQuery = "select * from room limit 3";
 $getServiceQuery = "select * from service limit 4";
-$service = queryExecute($getServiceQuery, true);
+$service = queryExecute($getServiceQuery, false);
 $room = queryExecute($getRoomQuery, true);
 $websetting = queryExecute($getWebsettingQuery,false);
 ?>
@@ -211,8 +211,8 @@ $websetting = queryExecute($getWebsettingQuery,false);
 
                         <a href="#" class="rq-img-overlay-effect">
                             <p class="rq-room-name-price">
-                                <span class="rq-room-title">COMBO BUFFET</span>
-                                <span class="rq-package-price">$250</span>
+                                <span class="rq-room-title"><?= $service['name']?></span>
+                                <span class="rq-package-price">$<?= $service['price']?></span>
                             </p>
                         </a>
                     </div>
@@ -228,8 +228,8 @@ $websetting = queryExecute($getWebsettingQuery,false);
 
                         <a href="#" class="rq-img-overlay-effect">
                             <p class="rq-room-name-price">
-                                <span class="rq-room-title">DINNER PACKEGE</span>
-                                <span class="rq-package-price">$250</span>
+                                <span class="rq-room-title"><?= $service['name']?></span>
+                                <span class="rq-package-price">$<?= $service['price']?></span>
                             </p>
                         </a>
                     </div>
@@ -245,8 +245,8 @@ $websetting = queryExecute($getWebsettingQuery,false);
 
                         <a href="#" class="rq-img-overlay-effect">
                             <p class="rq-room-name-price">
-                                <span class="rq-room-title">MASTER ROOM</span>
-                                <span class="rq-package-price">$250</span>
+                                <span class="rq-room-title"><?= $service['name']?></span>
+                                <span class="rq-package-price">$<?= $service['price']?></span>
                             </p>
                         </a>
                     </div>
@@ -262,8 +262,8 @@ $websetting = queryExecute($getWebsettingQuery,false);
 
                         <a href="#" class="rq-img-overlay-effect">
                             <p class="rq-room-name-price">
-                                <span class="rq-room-title">SUNSET DELUXE</span>
-                                <span class="rq-package-price">$250 <span>night</span></span>
+                                <span class="rq-room-title"><?= $service['name']?></span>
+                                <span class="rq-package-price">$<?= $service['price']?><span>night</span></span>
                             </p>
                         </a>
                     </div>
