@@ -121,7 +121,7 @@ $users = queryExecute($getUsersQuery, true);
                                         <td>
                                             <?php echo $us['role_name'] ?>
                                         </td>
-                                        <td><?php echo $us['phone_number'] ?></td>
+                                        <td><?php echo $us['number_phone'] ?></td>
                                         <td>
                                             <?php if ($us['role_id'] <= $_SESSION[AUTH]['role_id'] || $us['id'] === $_SESSION[AUTH]['id']) : ?>
                                                 <a href="<?php echo ADMIN_URL . 'users/edit-form.php?id=' . $us['id'] ?>" class="btn btn-sm btn-info">

@@ -6,7 +6,8 @@ $loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
 
 $getRoomGalleries = "select * from room_galleries";
 $RoomGalleries = queryExecute($getRoomGalleries, true);
-
+$getService = "select * from service";
+$service = queryExecute($getService, true);
 $getRoomQuery = "select * from room";
 $room = queryExecute($getRoomQuery, false);
 ?>
@@ -107,24 +108,20 @@ $room = queryExecute($getRoomQuery, false);
                                 </div>
                                 <!-------  /row  ------------>
                                 <h2>extra service</h2>
+                                <?php foreach ($service as $s) : ?>
                                 <div class="rq-extra">
                                     <div class="rq-extra-content">
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox"> BBQ Party
+                                                <input type="checkbox"><?= $s['name']?>
                                             </label>
                                         </div>
-                                        <p><span>$250 </span>/ Group / Trip</p>
+                                        <p><span>$<?= $s['price']?></span>/ Group / Trip</p>
                                     </div>
-                                    <div class="rq-extra-content rq-extra-content-2">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox"> Airport Transfer
-                                            </label>
-                                        </div>
-                                        <p><span>$250 </span>/ Group / Trip</p>
-                                    </div>
-                                </div><br>  
+                                   
+                                </div>
+                                <?php endforeach;?>
+                                <br>  
                             <input type="text" name="room_id" value="<?= $_GET['id'] ?>" hidden>
                                 <button class="rq-btn-primary form-control" type="submit">check availability</button>
 

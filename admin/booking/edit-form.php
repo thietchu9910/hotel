@@ -7,7 +7,6 @@ $id = isset($_GET['id']) ? $_GET['id'] : -1;
 
 $getBookingEditQuery = "select * from booking where id = '$id'";
 $bookingEdit = queryExecute($getBookingEditQuery, false);
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,7 +32,7 @@ $bookingEdit = queryExecute($getBookingEditQuery, false);
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Sửa phương tiện</h1>
+                            <h1 class="m-0 text-dark">Edit booking</h1>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
@@ -47,70 +46,45 @@ $bookingEdit = queryExecute($getBookingEditQuery, false);
 
                     <form id="edit-vehicle-form" action="<?= ADMIN_URL . 'booking/save-edit.php' ?>" method="post" enctype="multipart/form-data">
                         <div class="row">
-                            <input name="id" value="<?php echo $BookingEdit['id'] ?>" hidden>
+                            <input type="text" class="form-control" name="id" value="<?= $_GET['id'] ?>" hidden>
                             <div class="col-md-6">
+
                                 <div class="form-group">
-                                    <label for="">Checkin_date<span class="text-danger">*</span></label>
-                                    <input type="date" class="form-control" name="checkin_date" value="<?php echo $bookingEdit['checkin_date']?>">
+                                    <label for="">Name<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="name" value="<?php echo $bookingEdit['name'] ?>">
                                 </div>
-                                <div class="form-group">
-                                    <label for="">First_name<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="first_name" value="<?php echo $bookingEdit['first_name']?>">
+                                <div class="form-group">    
+                                    <input type="text" class="form-control" name="status" value="<?php echo $bookingEdit['status'] ?>" hidden>
                                 </div>
-                                <div class="form-group">
-                                    <label for="">Last_name<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="last_name" value="<?php echo $bookingEdit['last_name']?>">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Email<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="email" value="<?php echo $bookingEdit['email']?>">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Phone_number<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="phone_number" value="<?php echo $bookingEdit['phone_number']?>">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Address<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="address" value="<?php echo $bookingEdit['address']?>">
-                                </div>
+
                                 <div class="form-group">
                                     <label for="">Adults<span class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" name="adults" value="<?php echo $bookingEdit['adults']?>">
+                                    <input type="number" class="form-control" name="adults" value="<?php echo $bookingEdit['adults'] ?>">
                                 </div>
-                                
 
-                               
+                                <div class="form-group">
+                                    <label for="">Chidren<span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" name="chidren" value="<?php echo $bookingEdit['chidren'] ?>">
+                                </div>
+
                             </div>
                             <div class="col-md-6">
-                            <div class="form-group">
-                                    <label for="">Chidren<span class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" name="chidren" value="<?php echo $bookingEdit['chidren']?>">
-                                </div>
+
                                 <div class="form-group">
                                     <label for="">Total_price<span class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" name="total_price" value="<?php echo $bookingEdit['total_price']?>">
+                                    <input type="number" class="form-control" name="total_price" value="<?php echo $bookingEdit['total_price'] ?>">
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Created_date<span class="text-danger">*</span></label>
-                                    <input type="date" class="form-control" name="created_date" value="<?php echo $bookingEdit['created_date']?>">
+                                    <label for="">check_in<span class="text-danger">*</span></label>
+                                    <input type="date" class="form-control" name="check_in" value="<?php echo $bookingEdit['check_in'] ?>">
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Reply_by<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="reply_by" value="<?php echo $bookingEdit['reply_by']?>">
+                                    <label for="">check_out<span class="text-danger">*</span></label>
+                                    <input type="date" class="form-control" name="check_out" value="<?php echo $bookingEdit['check_out'] ?>">
                                 </div>
-                                <div class="form-group">
-                                    <label for="">Reply_message<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="reply_message" value="<?php echo $bookingEdit['reply_message']?>">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Feedback_room<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="feedback_room" value="<?php echo $bookingEdit['feedback_room']?>">
-                                </div>
-                                
-                                <div class="input-group mb-3 mt-3">
-                                    
-                                   
-                                </div>
+
+
+
                             </div>
                         </div>
                         <div class="col-12 d-flex justify-content-end">

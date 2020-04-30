@@ -77,21 +77,13 @@ $booking = queryExecute($getBookingQuery, true);
                         <table class="table table-stripped">
                             <thead>
                                 <th>ID</th>
-                                <th>Checkin_date</th>
-                                <th>First_name</th>
-                                <th>Last_name</th>                                                              <th>Email</th>
-                                <th>Phone_number</th>
-                                <th>Address</th>
+                                <th>Name</th>
+                                <th>Status</th>
                                 <th>Adults</th>
                                 <th>Chidren</th>
-                                <th>Total_price</th>
-                                <th>Created_date</th>
-                                <th>Reply_by</th>
-                                <th>Reply_message</th>
+                                <th>Total_price</th>                                
                                 <th>Checked_in</th>
-                                <th>Check_in_date</th>
-                                <th>Message</th>
-                                <th>Feedback_room</th>
+                                <th>Check_out</th>
                                 <th>
                                     <a href="<?php echo ADMIN_URL . 'booking/add-form.php' ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm</a>
                                 </th>
@@ -100,21 +92,13 @@ $booking = queryExecute($getBookingQuery, true);
                                 <?php foreach ($booking as $bo) : ?>
                                     <tr>
                                         <td><?php echo $bo['id'] ?></td>
-                                        <td><?php echo $bo['checkin_date'] ?></td>
-                                        <td><?php echo $bo['first_name'] ?></td>
-                                        <td><?php echo $bo['last_name'] ?></td>
-                                        <td><?php echo $bo['phone_number'] ?></td>
-                                        <td><?php echo $bo['address'] ?></td>
+                                        <td><?php echo $bo['name'] ?></td>
+                                        <td><?php echo $bo['status']?></td>
                                         <td><?php echo $bo['adults'] ?></td>
                                         <td><?php echo $bo['chidren'] ?></td>
                                         <td><?php echo $bo['total_price'] ?></td>
-                                        <td><?php echo $bo['created_date'] ?></td>
-                                        <td><?php echo $bo['reply_by'] ?></td>
-                                        <td><?php echo $bo['reply_message'] ?></td>
-                                        <td><?php echo $bo['checked_in'] ?></td>
-                                        <td><?php echo $bo['check_in_date'] ?></td>
-                                        <td><?php echo $bo['message'] ?></td>
-                                        <td><?php echo $bo['feedback_room'] ?></td>
+                                        <td><?php echo $bo['check_in'] ?></td>
+                                        <td><?php echo $bo['check_out'] ?></td>                                      
                                         <td>
                                             <a href="<?php echo ADMIN_URL . 'booking/edit-form.php?id=' . $bo['id'] ?>" class="btn btn-sm btn-info">
                                                 <i class="fas fa-pencil-alt"></i>

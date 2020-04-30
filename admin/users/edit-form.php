@@ -88,9 +88,9 @@ if ($user['id'] != $_SESSION[AUTH]['id'] && $user['role_id'] >= $_SESSION[AUTH][
                                 </div>
                                 <div class="form-group">
                                     <label for="">Số điện thoại</label>
-                                    <input type="text" class="form-control" name="phone_number" value="<?= $user['phone_number'] ?>">
-                                    <?php if (isset($_GET['phone_numbererr'])) : ?>
-                                        <label class="error"><?= $_GET['phone_numbererr'] ?></label>
+                                    <input type="text" class="form-control" name="number_phone" value="<?= $user['number_phone'] ?>">
+                                    <?php if (isset($_GET['number_phoneerr'])) : ?>
+                                        <label class="error"><?= $_GET['number_phoneerr'] ?></label>
                                     <?php endif; ?>
                                 </div>
                                 <div class="col d-flex justify-content-center p-4">
@@ -144,7 +144,7 @@ if ($user['id'] != $_SESSION[AUTH]['id'] && $user['role_id'] >= $_SESSION[AUTH][
                     required: true,
                     equalTo: "#main-password"
                 },
-                phone_number: {
+                number_phone: {
                     required: true,
                     number: true,
                     maxlength: 10,
@@ -171,7 +171,7 @@ if ($user['id'] != $_SESSION[AUTH]['id'] && $user['role_id'] >= $_SESSION[AUTH][
                     required: "Nhập lại mật khẩu",
                     equalTo: "Cần khớp với mật khẩu"
                 },
-                phone_number: {
+                number_phone: {
                     required: "Nhập số điện thoại vào đây",
                     minlength: "Bắt buộc là số có 10 chữ số",
                     maxlength: "Bắt buộc là số có 10 chữ số",

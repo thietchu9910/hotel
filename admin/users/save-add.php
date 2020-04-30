@@ -54,7 +54,7 @@ $password = password_hash($password, PASSWORD_DEFAULT);
 $insertUserQuery = "insert into users
                           (name, email, password, phone_number, role_id)
                     values
-                          ('$name', '$email', '$password', '$phone_number', '$role_id')";
+                          ('$name', '$email', '$password', '$number_phone', '$role_id')";
 queryExecute($insertUserQuery, false);
 header("location: " . ADMIN_URL . "users");
 die;

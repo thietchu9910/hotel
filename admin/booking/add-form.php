@@ -41,29 +41,15 @@ checkAdminLoggedIn();
                     <form id="add-user-form" action="<?= ADMIN_URL . 'booking/save-add.php' ?>" method="post" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-6">
+
                                 <div class="form-group">
-                                    <label for="">Checkin_date<span class="text-danger">*</span></label>
-                                    <input type="date" class="form-control" name="checkin_date">
+                                    <label for="">Name<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="name">
                                 </div>
+
                                 <div class="form-group">
-                                    <label for="">First_name<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="first_name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Last_name<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="last_name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Email<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Phone_number<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="phone_number">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Address<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="address">
+                                    
+                                    <input type="text" class="form-control" name="status" hidden>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Adults<span class="text-danger">*</span></label>
@@ -73,62 +59,40 @@ checkAdminLoggedIn();
                                     <label for="">Chidren<span class="text-danger">*</span></label>
                                     <input type="number" class="form-control" name="chidren">
                                 </div>
+                            </div>
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Total_price<span class="text-danger">*</span></label>
                                     <input type="number" class="form-control" name="total_price">
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Created_date<span class="text-danger">*</span></label>
-                                    <input type="date" class="form-control" name="created_date">
+                                    <label for="">Check_in<span class="text-danger">*</span></label>
+                                    <input type="date" class="form-control" name="check_in">
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Reply_by<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="reply_by">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Reply_message<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="reply_message">
-                                </div>
-                               
-
-                            </div>
-                            <div class="col-md-6">
-                                
-                                <div class="form-group">
-                                    <label for="">Checked_in<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="checked_in">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Check_in_date<span class="text-danger">*</span></label>
-                                    <input type="date" class="form-control" name="check_in_date">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Message<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="message">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Feedback_room<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="feedback_room">
-                                </div>
-                                <div class="from-group p-2">
-                                    <div class="col d-flex justify-content-start">
-                                        <button type="submit" class="btn btn-primary">Tạo</button>&nbsp;
-                                        <a href="<?= ADMIN_URL . 'booking' ?>" class="btn btn-danger">Hủy</a>
-                                    </div>
+                                    <label for="">Check_in<span class="text-danger">*</span></label>
+                                    <input type="date" class="form-control" name="check_out">
                                 </div>
                             </div>
-
+                            <div class="from-group p-2">
+                                <div class="col d-flex justify-content-start">
+                                    <button type="submit" class="btn btn-primary">Tạo</button>&nbsp;
+                                    <a href="<?= ADMIN_URL . 'booking' ?>" class="btn btn-danger">Hủy</a>
+                                </div>
+                            </div>
                         </div>
-                    </form>
-                    <!-- /.row -->
 
-                </div><!-- /.container-fluid -->
-            </section>
-            <!-- /.content -->
-        </div>
-        <!-- /.content-wrapper -->
-        <?php include_once '../_share/footer.php'; ?>
-        <!-- /.control-sidebar -->
+                </div>
+                </form>
+                <!-- /.row -->
+
+        </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <?php include_once '../_share/footer.php'; ?>
+    <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
     <?php include_once '../_share/script.php'; ?>
