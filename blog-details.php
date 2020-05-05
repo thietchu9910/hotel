@@ -1,6 +1,8 @@
 <?php 
 session_start();
 require_once "./config/utils.php";
+$loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
+
 ?>
 
 
@@ -13,7 +15,7 @@ require_once "./config/utils.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Houston | Blog Details</title>
-    <?php require_once "./_share/style.php"?>
+    <?php require_once "./public/_share/style.php"?>
   </head>
   <body>
 <div id="rq-circle-loader-wrapper">
@@ -68,7 +70,7 @@ require_once "./config/utils.php";
     <!-- SIDE MENU END -->
 
 
-    <?php require_once "./_share/header.php"; ?>
+    <?php require_once "./public/_share/header.php"; ?>
 
     <div id="banner">
       <img src="<?= ADMIN_ASSET_URL ?>img/blog-details-banner.jpg" alt="" class="img-responsive">      
@@ -190,8 +192,8 @@ require_once "./config/utils.php";
       </div>
     </main>
     
-    <?php require_once "./_share/footer.php"; ?>
-    <?php require_once "./_share/script.php"; ?>
+    <?php require_once "./public/_share/footer.php"; ?>
+    <?php require_once "./public/_share/script.php"; ?>
   </body>
 
 <!-- Mirrored from redqteam.com/sites/houston/blog-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 21 Mar 2020 05:56:42 GMT -->

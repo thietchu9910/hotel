@@ -23,14 +23,15 @@ require_once "../config/utils.php";
 
 <body>
 	<div class="container">
-		<div class="row">
+		<div class="row pt-5">
 			<div class="col-4 offset-4">
-				<div class="login-logo">
-					<a href="<?php echo BASE_URL ?>">
-						<img src="<?php echo PUBLIC_URL . 'admin/img/logo.png' ?>" alt="" class="img-thumbnail">
-					</a>
-				</div>
-				<form action="./post-login.php" method="post">
+
+				<form action="./post-login.php" method="post" autocomplete="on">
+					<div class="d-flex justify-content-center login-logo">
+						<a href="<?php echo BASE_URL ?>">
+							<img src="<?php echo PUBLIC_URL . 'admin/img/logo.png' ?>" alt="" class="img-thumbnail">
+						</a>
+					</div>
 					<div class="d-flex justify-content-center">
 						<?php if (isset($_GET['msg'])) : ?>
 							<span class="text-danger"><?php echo $_GET['msg'] ?></span>

@@ -61,7 +61,7 @@ $room = queryExecute($getRoomQuery, false);
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-sm-5 col-lg-4">
-                        <form action="<?= BASE_URL . 'save-booking.php'?>" method="POST">
+                        <form action="<?= BASE_URL . 'save-booking.php' ?>" method="POST">
                             <div class="rq-single-room-checkin">
                                 <div class="rq-check-in-out-wrapper">
 
@@ -79,7 +79,7 @@ $room = queryExecute($getRoomQuery, false);
                                     <input type="date" class="form-control" name="check_out">
                                 </div>
                                 <!--  / date & time picker -->
-                               
+
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6">
                                         <h2>ADULT</h2>
@@ -96,7 +96,7 @@ $room = queryExecute($getRoomQuery, false);
                                     <div class="col-md-6 col-sm-6">
                                         <h2>children</h2>
                                         <div class="rq-children">
-                                            <select class="js-example-placeholder-single form-control" name="chidren"> 
+                                            <select class="js-example-placeholder-single form-control" name="chidren">
                                                 <option>&nbsp;</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -108,156 +108,167 @@ $room = queryExecute($getRoomQuery, false);
                                 </div>
                                 <!-------  /row  ------------>
                                 <h2>extra service</h2>
-                                <?php foreach ($service as $s) : ?>
                                 <div class="rq-extra">
+                                <?php foreach ($service as $s) : ?>
                                     <div class="rq-extra-content">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox"><?= $s['name']?>
-                                            </label>
-                                        </div>
-                                        <p><span>$<?= $s['price']?></span>/ Group / Trip</p>
+                                       
+                                            <div class="checkbox">
+                                                <label>
+                                                   <?= $s['name'] ?>
+                                                </label>
+                                            </div>
+                                            <p><span>$<?= $s['price'] ?></span>/ Group / Trip</p>
+                                       
                                     </div>
-                                   
-                                </div>
-                                <?php endforeach;?>
-                                <br>  
-                            <input type="text" name="room_id" value="<?= $_GET['id'] ?>" hidden>
-                                <button class="rq-btn-primary form-control" type="submit">check availability</button>
+                                    <?php endforeach; ?>
+                                    <br>
+                                    <input type="text" name="room_id" value="<?= $_GET['id'] ?>" hidden>
+                                    <button class="rq-btn-primary form-control" type="submit">check availability</button>
 
-                            </div>
+                                </div>
 
                         </form>
                     </div>
-                    <div class="col-md-8 col-sm-7 col-lg-8">
-                        <div class="rq-flex-slider">
-                            <!-- Place somewhere in the <body> of your page -->
-                            <div id="slider" class="flexslider">
-                                <ul class="slides">
-                                    <?php foreach ($RoomGalleries as $ga) : ?>
-                                        <li>
-                                            <img src="<?= $ga['img_url'] ?>" alt="Slider Image" />
-                                        </li>
-                                    <?php endforeach; ?>
-                                    <!-- items mirrored twice, total of 12 -->
-                                </ul>
-                            </div>
-                           
+                </div>
+                <div class="col-md-8 col-sm-7 col-lg-8">
+                    <div class="rq-flex-slider">
+                        <!-- Place somewhere in the <body> of your page -->
+                        <div id="slider" class="flexslider">
+                            <ul class="slides">
+                                <?php foreach ($RoomGalleries as $ga) : ?>
+                                    <li data-thumb="<?= BASE_URL . $roomGallerie['img_url'] ?>">
+                                        <img src="<?= $ga['img_url'] ?>" alt="Slider Image" />
+                                    </li>
+                                <?php endforeach; ?>
+                                <!-- items mirrored twice, total of 12 -->
+                            </ul>
                         </div>
-                        <!------------/rq-flex-slider---------------------->
-                        <div class="single-room-text">
-                            <div class="rq-singleRoom-text-head">
-                                <div class="rq-singleRoom-text-head-left">
-                                    <h2><?php echo $room['name'] ?></h2>
-                                    <h4><span><?php echo $room['price'] ?> / </span> Night</h4>
-                                </div>
-                                <div class="rq-singleRoom-text-head-right pull-right">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                            <!------------/rq-singleRoom-text-head ---------------------->
-                            <div class="rq-single-room-para">
-                                <p><?= $room['about'] ?></p>
-
-
-                            </div>
-                            <!------------/rq-single-room-para---------------------->
-                            <div class="single-room-text-custom">
-                                <ul class="nav">
-                                    <li role="presentation"><span class="badge"><i class="fa fa-check" aria-hidden="true"></i></span><?=$room['short_desc']?></li>
-                                    
-                            </div>
-                            <div class="rq-tabs">
-                                <ul class="nav nav-tabs">
-                                    <li class="active"><a data-toggle="tab" href="#home">Features</a></li>
-                                    <li><a data-toggle="tab" href="#menu1">reviews</a></li>
-                                </ul>
-                                <div class="tab-content">
-                                    <div id="home" class="tab-pane fade in active">
-                                        <div>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                        </div>
-                                        <p>On the other hand, we denounce with righteous indignation </p>
-                                        <h6>dorian doe</h6>
-                                    </div>
-                                    <div id="menu1" class="tab-pane fade">
-                                        <div>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                        </div>
-                                        <p>On the other hand, we denounce with righteous indignation and dislike men who
-                                            are so beguiled and demoralizd of pleasure of the moment, so blinded by
-                                            desire</p>
-                                        <h6>dorian doe</h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="rq-submit-review col-md-12 col-xs-12 col-sm-12">
-                                <div class="row">
-                                    <div class="rq-submit-review-form-wrapper">
-                                        <h2>Submit review</h2>
-                                        <form action="#">
-                                            <div class="rq-review-form col-md-8 col-sm-12">
-                                                <input type="text" class="form-control" placeholder="Name">
-                                                <input type="text" class="form-control" placeholder="Email">
-                                                <textarea class="form-control" rows="5" placeholder="Your Comment"></textarea>
-                                            </div>
-
-                                            <div class="rq-review col-md-4 col-sm-12 col-xs-12">
-                                                <div class="rq-review-custom">
-                                                    <div class="rq-review-left">
-                                                        <div class="rq-service-rating"></div>
-                                                    </div>
-                                                    <div class="rq-review-right">
-                                                        <p>Service</p>
-                                                    </div>
-                                                </div>
-                                                <!--------/rq-review-custom------>
-                                                <div class="rq-review-custom">
-                                                    <div class="rq-review-left">
-                                                        <div class="rq-service-rating"></div>
-                                                    </div>
-                                                    <div class="rq-review-right">
-                                                        <p>Food</p>
-                                                    </div>
-                                                </div>
-                                                <!--------/rq-review-custom------>
-                                                <div class="rq-review-custom">
-                                                    <div class="rq-review-left">
-                                                        <div class="rq-service-rating"></div>
-                                                    </div>
-                                                    <div class="rq-review-right">
-                                                        <p>Guide</p>
-                                                    </div>
-                                                </div>
-                                                <!--------/rq-review-custom------>
-                                                <h6><span>4.5</span></h6>
-                                            </div>
-                                            <button class="rq-btn-primary" type="submit">submit</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <!------------- single-room-text ---->
+                        <div id="carousel" class="flexslider">
+                            <ul class="slides">
+                                <?php foreach ($RoomGalleries as $ga) : ?>
+                                    <li data-thumb="<?= BASE_URL . $roomGallerie['img_url'] ?>">
+                                        <img src="<?= $ga['img_url'] ?>" alt="Slider Image" />
+                                    </li>
+                                <?php endforeach; ?>
+                                <!-- items mirrored twice, total of 12 -->
+                            </ul>
                         </div>
+
+                    </div>
+                    <!------------/rq-flex-slider---------------------->
+                    <div class="single-room-text">
+                        <div class="rq-singleRoom-text-head">
+                            <div class="rq-singleRoom-text-head-left">
+                                <h2><?php echo $room['name'] ?></h2>
+                                <h4><span><?php echo $room['price'] ?> / </span> Night</h4>
+                            </div>
+                            <div class="rq-singleRoom-text-head-right pull-right">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <!------------/rq-singleRoom-text-head ---------------------->
+                        <div class="rq-single-room-para">
+                            <p><?= $room['about'] ?></p>
+
+
+                        </div>
+                        <!------------/rq-single-room-para---------------------->
+                        <div class="single-room-text-custom">
+                            <ul class="nav">
+                                <li role="presentation"><span class="badge"><i class="fa fa-check" aria-hidden="true"></i></span><?= $room['short_desc'] ?></li>
+
+                        </div>
+                        <div class="rq-tabs">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#home">Features</a></li>
+                                <li><a data-toggle="tab" href="#menu1">reviews</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="home" class="tab-pane fade in active">
+                                    <div>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </div>
+                                    <p>On the other hand, we denounce with righteous indignation </p>
+                                    <h6>dorian doe</h6>
+                                </div>
+                                <div id="menu1" class="tab-pane fade">
+                                    <div>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </div>
+                                    <p>On the other hand, we denounce with righteous indignation and dislike men who
+                                        are so beguiled and demoralizd of pleasure of the moment, so blinded by
+                                        desire</p>
+                                    <h6>dorian doe</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rq-submit-review col-md-12 col-xs-12 col-sm-12">
+                            <div class="row">
+                                <div class="rq-submit-review-form-wrapper">
+                                    <h2>Submit review</h2>
+                                    <form action="#">
+                                        <div class="rq-review-form col-md-8 col-sm-12">
+                                            <input type="text" class="form-control" placeholder="Name">
+                                            <input type="text" class="form-control" placeholder="Email">
+                                            <textarea class="form-control" rows="5" placeholder="Your Comment"></textarea>
+                                        </div>
+
+                                        <div class="rq-review col-md-4 col-sm-12 col-xs-12">
+                                            <div class="rq-review-custom">
+                                                <div class="rq-review-left">
+                                                    <div class="rq-service-rating"></div>
+                                                </div>
+                                                <div class="rq-review-right">
+                                                    <p>Service</p>
+                                                </div>
+                                            </div>
+                                            <!--------/rq-review-custom------>
+                                            <div class="rq-review-custom">
+                                                <div class="rq-review-left">
+                                                    <div class="rq-service-rating"></div>
+                                                </div>
+                                                <div class="rq-review-right">
+                                                    <p>Food</p>
+                                                </div>
+                                            </div>
+                                            <!--------/rq-review-custom------>
+                                            <div class="rq-review-custom">
+                                                <div class="rq-review-left">
+                                                    <div class="rq-service-rating"></div>
+                                                </div>
+                                                <div class="rq-review-right">
+                                                    <p>Guide</p>
+                                                </div>
+                                            </div>
+                                            <!--------/rq-review-custom------>
+                                            <h6><span>4.5</span></h6>
+                                        </div>
+                                        <button class="rq-btn-primary" type="submit">submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!------------- single-room-text ---->
                     </div>
                 </div>
             </div>
         </div>
-        <!-- / rq-single-room-area-->
+    </div>
+    <!-- / rq-single-room-area-->
 
-        <?php require_once "public/_share/footer.php" ?>
+    <?php require_once "public/_share/footer.php" ?>
     </div>
     <?php require_once "public/_share/script.php"; ?>
 

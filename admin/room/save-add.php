@@ -8,7 +8,7 @@ $short_desc = trim($_POST['short_desc']);
 $about = trim($_POST['about']);
 $adults = trim($_POST['adults']);
 $children = trim($_POST['children']);
-$image_url = $_FILES['image_url'];
+$featrue_image = $_FILES['featrue_image'];
 
 // validate bằng php
 // $plate_numbererr = "";
@@ -29,14 +29,14 @@ $image_url = $_FILES['image_url'];
 
 // upload file ảnh
 $filename = "";
-if ($image_url['size'] > 0) {
-    $filename = uniqid() . '-' . $image_url['name'];
-    move_uploaded_file($image_url['tmp_name'], "../../public/admin/img/" . $filename);
+if ($featrue_image['size'] > 0) {
+    $filename = uniqid() . '-' . $featrue_image['name'];
+    move_uploaded_file($featrue_image['tmp_name'], "../../public/admin/img/" . $filename);
     $filename = "public/admin/img/" . $filename;
 }
 
 $insertRoomQuery = "insert into room
-                          (name, image_url, status, short_desc, about, adults, children)
+                          (name, featrue_image, status, short_desc, about, adults, children)
                     values
                           ('$name ', '$filename', '$status', '$short_desc', '$about', '$adults', '$children')";
 queryExecute($insertRoomQuery, false);

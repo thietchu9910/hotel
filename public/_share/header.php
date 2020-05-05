@@ -35,16 +35,7 @@
                         <a href="about-us.php">About</a>
                     </li>
                     <li>
-                        <a href="cart.php">Pages</a>
-                        <ul class="rq-sub-menu">
-                            <li>
-                                <a href="cart.php">Cart</a>
-                            </li>
-                            <li>
-                                <a href="checkout.php">Check Out</a>
-                            </li>
-
-                        </ul>
+                        <a href="cart.php">Cart</a>
                     </li>
                     <li>
                         <a href="blog.php">Blog</a>
@@ -55,36 +46,33 @@
                             <li>
                                 <a href="blog-details.php">Blog Details</a>
                             </li>
+                            
                         </ul>
                     </li>
+                    
                     <li>
                         <a href="contact.php">Contact</a>
                     </li>
+                    <?php if ($loggedInUser) : ?>
+                                    <li role="presentation" >
+                                        <a id="drop2" href="#" class="dropdown-toggle text-primary" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+                                            Hi, <?= $loggedInUser['name']; ?>
+                                        </a>
+                                        <ul id="menu2" class="rq-sub-menu" role="menu">
+                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Thông tin cá nhân</a></li>
+                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Đổi thông tin</a></li>
+                                            <?php if ($loggedInUser !== null && $loggedInUser['role_id'] > 1):?>
+                                                <li role="presentation"><a role="menuitem" tabindex="-1" class="login-color" href="<?=ADMIN_URL. 'dashboard'?>">Quản trị</a></li>
+                                            <?php endif;?>
+                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="<?=LOGIN_URL.'logout.php'?>">Đăng xuất</a></li>
+                                        </ul>
+                                    </li>
+                                <?php else : ?>
+                                    <li><a href="<?=LOGIN_URL.'login.php'?>" class="nav-link text-primary login-color">Login</a></li>
+                                <?php endif ?>
                 </ul>
             </div>
             <!-- navbar-collapse end-->
-
-            <div class="rq-extra-btns-wrapper">
-                <div class="rq-language">
-                    <?php if ($loggedInUser) : ?>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                            aria-haspopup="true" aria-expanded="false">Hi, <?= $loggedInUser['name']; ?></a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Thông tin cá nhân</a>
-                            <a class="dropdown-item" href="#">Đổi mật khẩu</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="<?php echo BASE_URL . './logout.php' ?>">Đăng xuất</a>
-                        </div>
-                    </li>
-                    <?php else : ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="" title="">Đăng Nhập</a>
-                    </li>
-                    <?php endif ?>
-                </div>
-                <button id="rq-side-menu-btn" class="cd-btn btn rq-sidemenu-btn"></button>
-            </div>
 
         </div>
     </nav>

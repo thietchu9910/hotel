@@ -26,53 +26,10 @@ $websetting = queryExecute($getWebsettingQuery,false);
 </head>
 
 <body class="rq-homepage-two">
-    <div id="rq-circle-loader-wrapper">
-        <div id="rq-circle-loader-center">
-            <div class="rq-circle-load">
-                <img src="<?= ADMIN_ASSET_URL ?>img/oval.svg" alt="Page Loader">
-            </div>
-        </div>
-    </div>
-    <!--================================
-                SIDE MENU
-    =================================-->
-    <!-- PAGE OVERLAY WHEN MENU ACTIVE -->
-    <div class="rq-side-menu-overlay"></div>
+    
     <!-- PAGE OVERLAY WHEN MENU ACTIVE END -->
 
-    <div class="rq-side-menu-wrap">
-        <!-- OVERLAY -->
-        <div class="rq-dark-overlay"></div>
-        <!-- OVERLAY END -->
-
-        <div id="rq-side-menu" class="rq-side-menu">
-            <div class="rq-side-menu-widget-wrap">
-                <div class="rq-login-form-wrapper">
-                    <h3>User Login</h3>
-                    <p>Login to add new listing </p>
-
-                    <div class="rq-login-form">
-                        <form action="post-login.php" method="POST">
-                            <input type="text" name="email" id="rq-user-input" placeholder="User Name">
-                            <input type="password" name="password" id="rq-user-password" placeholder="Password">
-                            <button type="submit">Login</button>
-                        </form>
-                        <div class="d-flex justify-content-center">
-                            <?php if (isset($_GET['msg'])) : ?>
-                            <span class="text-danger"><?php echo $_GET['msg'] ?></span>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-                    <div class="rq-other-options">
-                        <a href="#" class="rq-forgot-pass">Forget Password ?</a>
-                        <a href="#" class="rq-signup">Sign up</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <button class="rq-side-menu-close-button" id="rq-side-menu-close-button">Close Menu</button>
-    </div>
+    
     <!-- SIDE MENU END -->
 
     <?php include_once './public/_share/header.php'; ?>
@@ -83,7 +40,6 @@ $websetting = queryExecute($getWebsettingQuery,false);
                 <form action="select-room-grid.php" method="post">
                 <div class="bq-banner-text">
                     <div class="bq-banner-text-middle">
-                        <img src="<?=ADMIN_ASSET_URL ?>img/<?=$websetting['small-logo'];?>" alt="Responsive image" />
                         <h1><?= $websetting['name'] ?></h1>
                         <div class="rq-banner-icon">
                             <i class="fa fa-star" aria-hidden="true"></i>

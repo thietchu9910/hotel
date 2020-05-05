@@ -6,6 +6,8 @@ $check_out = ($_POST['check_out']);
 $adults = trim($_POST['adults']);
 $chidren = trim($_POST['chidren']);
 $room_id = $_POST['room_id'];
+$service = $_POST['service'];
+dd($service);
 
 $insertBookingQuery = "insert into booking
                           (status,room_id, adults, chidren, check_in, check_out )

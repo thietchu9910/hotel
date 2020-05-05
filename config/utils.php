@@ -2,6 +2,8 @@
 #quy dinh constants
 define('BASE_URL' , 'http://localhost/thietcv_ph09326/');
 define('ADMIN_URL', BASE_URL . 'admin/');
+define('LOGIN_URL', BASE_URL . 'login/');
+
 
 
 define('PUBLIC_URL', BASE_URL . 'public/');
