@@ -88,8 +88,7 @@ $web_setting = queryExecute($getWeb_settingQuery, true);
                                 <th>Slogan</th>
                                 <th>Sologan_author</th>
                                 <th>Intro_content</th>
-                                <th>About_page_title</th>
-                                <th>About_page_content</th>
+                             
                             </thead>
                             <tbody>
                                 <?php foreach ($web_setting as $bo) : ?>
@@ -98,7 +97,7 @@ $web_setting = queryExecute($getWeb_settingQuery, true);
                                         <td><?php echo $bo['name'] ?></td>
                                         <td><?php echo $bo['title_hotel'] ?></td>
                                         <td><?php echo $bo['logo'] ?></td>
-                                        <td><?php echo $bo['small-logo'] ?></td>
+                                        <td><?php echo $bo['small_logo'] ?></td>
                                         <td><?php echo $bo['hotline'] ?></td>
                                         <td><?php echo $bo['locate'] ?></td>
                                         <td><?php echo $bo['email'] ?></td>
@@ -106,8 +105,7 @@ $web_setting = queryExecute($getWeb_settingQuery, true);
                                         <td><?php echo $bo['slogan'] ?></td>
                                         <td><?php echo $bo['slogan_author'] ?></td>
                                         <td><?php echo $bo['intro_content'] ?></td>
-                                        <td><?php echo $bo['about_page_title'] ?></td>
-                                        <td><?php echo $bo['about_page_content'] ?></td>
+                                       
                                       
                                         <td>
                                             <a href="<?php echo ADMIN_URL . 'web_setting/edit-form.php?id=' . $bo['id'] ?>" class="btn btn-sm btn-info">

@@ -51,65 +51,52 @@ $web_settingEdit = queryExecute($getWeb_settingEditQuery, false);
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Name<span class="text-danger">*</span></label>
-                                    <input type="date" class="form-control" name="name" <?php echo $web_settingEdit['name']?>>
+                                    <input type="date" class="form-control" name="name" value="<?php echo $web_settingEdit['name']?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="">Title_hotel<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="title_hotel" <?php echo $web_settingEdit['title_hotel']?>>
+                                    <input type="text" class="form-control" name="title_hotel" value="<?php echo $web_settingEdit['title_hotel']?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="">Logo<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="logo" <?php echo $web_settingEdit['logo']?>>
+                                    <input type="text" class="form-control" name="logo" value="<?php echo $web_settingEdit['logo']?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="">Small_logo<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="small_logo" <?php echo $web_settingEdit['small_logo']?>>
+                                    <input type="text" class="form-control" name="small_logo" value="<?php echo $web_settingEdit['small_logo']?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="">Hotline<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="hotline" <?php echo $web_settingEdit['hotline']?>>
+                                    <input type="text" class="form-control" name="hotline" value="<?php echo $web_settingEdit['hotline']?>">
                                 </div>
-                                <div class="form-group">
-                                    <label for="">Locate<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="locate" <?php echo $web_settingEdit['locate']?>>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Email<span class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" name="email" <?php echo $web_settingEdit['email']?>>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Background_img<span class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" name="background_img" <?php echo $web_settingEdit['background_img']?>>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Slogan<span class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" name="slogan" <?php echo $web_settingEdit['slogan']?>>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Slogan_author<span class="text-danger">*</span></label>
-                                    <input type="date" class="form-control" name="slogan_author" <?php echo $web_settingEdit['slogan_author']?>>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Intro_content<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="intro_content" <?php echo $web_settingEdit['intro_content']?>>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">About_page_title<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="about_page_title" <?php echo $web_settingEdit['about_page_title']?>>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">About_page_content<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="about_page_content" <?php echo $web_settingEdit['about_page_content']?>>
-                                </div>
+                               
+                               
 
                                
                             </div>
                             <div class="col-md-6">
-                                
-                                <div class="input-group mb-3 mt-3">
-                                    
-                                   
+                            <div class="form-group">
+                                    <label for="">Locate<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="locate" value="<?php echo $web_settingEdit['locate']?>">
                                 </div>
+                            <div class="form-group">
+                                    <label for="">Email<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="email" value="<?php echo $web_settingEdit['email']?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Background_img<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="background_img" value="<?php echo $web_settingEdit['background_img']?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Slogan<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="slogan" value="<?php echo $web_settingEdit['slogan']?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Slogan_author<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="slogan_author" value="<?php echo $web_settingEdit['slogan_author']?>">
+                                </div>
+                              
+                                
                             </div>
                         </div>
                         <div class="col-12 d-flex justify-content-end">
