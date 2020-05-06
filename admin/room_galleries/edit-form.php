@@ -55,7 +55,7 @@ $room = queryExecute($getRoomQuery, true);
                                     <label for="">Room<span class="text-danger">*</span></label>
                                     <select id="statusRG" class="form-control" name="room_id">
                                         <option value="">Chọn loại phòng</option>
-                                        <?php foreach ($room as $r) : ?>
+                                        <?php foreach ($custom_feedback as $cf) : ?>
                                             <option value="<?= $r['id'] ?>" <?php if ($r['id'] == $room_galleriesEdit['room_id']) : ?>selected<?php endif; ?>><?= $r['name'] ?></option>
                                         <?php endforeach ?>
                                     </select>

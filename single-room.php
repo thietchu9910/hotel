@@ -6,10 +6,15 @@ $loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
 
 $getRoomGalleries = "select * from room_galleries";
 $RoomGalleries = queryExecute($getRoomGalleries, true);
+
 $getService = "select * from service";
 $service = queryExecute($getService, true);
+
 $getRoomQuery = "select * from room";
 $room = queryExecute($getRoomQuery, false);
+
+$getCustom_feedbackQuery = "select * from Custom_feedback where goodidea=1";
+$custom_feedback = queryExecute($getCustom_feedbackQuery, false);
 ?>
 
 <!DOCTYPE html>
@@ -114,7 +119,7 @@ $room = queryExecute($getRoomQuery, false);
                                        
                                             <div class="checkbox">
                                                 <label>
-                                                   <?= $s['name'] ?>
+                                                    <?= $s['name'] ?>
                                                 </label>
                                             </div>
                                             <p><span>$<?= $s['price'] ?></span>/ Group / Trip</p>
@@ -162,13 +167,7 @@ $room = queryExecute($getRoomQuery, false);
                                 <h2><?php echo $room['name'] ?></h2>
                                 <h4><span><?php echo $room['price'] ?> / </span> Night</h4>
                             </div>
-                            <div class="rq-singleRoom-text-head-right pull-right">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                            </div>
+                           
                         </div>
                         <!------------/rq-singleRoom-text-head ---------------------->
                         <div class="rq-single-room-para">
@@ -177,84 +176,60 @@ $room = queryExecute($getRoomQuery, false);
 
                         </div>
                         <!------------/rq-single-room-para---------------------->
-                        <div class="single-room-text-custom">
-                            <ul class="nav">
-                                <li role="presentation"><span class="badge"><i class="fa fa-check" aria-hidden="true"></i></span><?= $room['short_desc'] ?></li>
-
+                       
+                       
+                        <article class="comments">
+              <h3>COMMENTS</h3>
+              <ul class="media-list">
+                <li class="media">
+                  <div class="media-left">
+                    <a href="#">                
+                      <img src="<?= ADMIN_ASSET_URL ?>img/blog-details-commenter.png" alt="">                
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <div class="arrow_box">
+                      <div class="comment-block">
+                        <h4><?= $custom_feedback['name']?></h4>
+                        <span><time datetime="2016-05-20">MAY 20, 2016</time></span>
+                      </div> 
+                      <p><?= $custom_feedback['comment']?></p>
+                      <p class="font11">FEEDBACK</p>
+                    </div>
+                    <div class="media">
+                      <div class="col-md-3  ">
+                        <a href="#">                
+                          <img src="<?= ADMIN_ASSET_URL?>img/blog-details-commenter.png" alt="">                
+                        </a>
+                      </div>
+                      <div class="media-body">
+                        <div class="arrow_box">
+                          <div class="comment-block">
+                            <h4><?= $custom_feedback['reply_by']?></h4>
+                            <span><time datetime="2016-05-20">MAY 20, 2016</time></span>
+                          </div> 
+                          <p><?= $custom_feedback['reply_content']?></p>
+                          <p class="font11">REPLY</p>
                         </div>
-                        <div class="rq-tabs">
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a data-toggle="tab" href="#home">Features</a></li>
-                                <li><a data-toggle="tab" href="#menu1">reviews</a></li>
-                            </ul>
-                            <div class="tab-content">
-                                <div id="home" class="tab-pane fade in active">
-                                    <div>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </div>
-                                    <p>On the other hand, we denounce with righteous indignation </p>
-                                    <h6>dorian doe</h6>
-                                </div>
-                                <div id="menu1" class="tab-pane fade">
-                                    <div>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </div>
-                                    <p>On the other hand, we denounce with righteous indignation and dislike men who
-                                        are so beguiled and demoralizd of pleasure of the moment, so blinded by
-                                        desire</p>
-                                    <h6>dorian doe</h6>
-                                </div>
-                            </div>
-                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </article>
                         <div class="rq-submit-review col-md-12 col-xs-12 col-sm-12">
                             <div class="row">
                                 <div class="rq-submit-review-form-wrapper">
                                     <h2>Submit review</h2>
-                                    <form action="#">
+                                    <form action="<?= ADMIN_URL . 'custom_feedback/save-add.php'?>" method="POST">
                                         <div class="rq-review-form col-md-8 col-sm-12">
-                                            <input type="text" class="form-control" placeholder="Name">
-                                            <input type="text" class="form-control" placeholder="Email">
-                                            <textarea class="form-control" rows="5" placeholder="Your Comment"></textarea>
+                                            <input type="text" class="form-control" name="name" placeholder="Name">
+                                            <input type="text" class="form-control" name="email" placeholder="Email">
+                                            <textarea class="form-control" rows="5" name="comment" placeholder="Your Comment"></textarea>
                                         </div>
 
-                                        <div class="rq-review col-md-4 col-sm-12 col-xs-12">
-                                            <div class="rq-review-custom">
-                                                <div class="rq-review-left">
-                                                    <div class="rq-service-rating"></div>
-                                                </div>
-                                                <div class="rq-review-right">
-                                                    <p>Service</p>
-                                                </div>
-                                            </div>
-                                            <!--------/rq-review-custom------>
-                                            <div class="rq-review-custom">
-                                                <div class="rq-review-left">
-                                                    <div class="rq-service-rating"></div>
-                                                </div>
-                                                <div class="rq-review-right">
-                                                    <p>Food</p>
-                                                </div>
-                                            </div>
-                                            <!--------/rq-review-custom------>
-                                            <div class="rq-review-custom">
-                                                <div class="rq-review-left">
-                                                    <div class="rq-service-rating"></div>
-                                                </div>
-                                                <div class="rq-review-right">
-                                                    <p>Guide</p>
-                                                </div>
-                                            </div>
-                                            <!--------/rq-review-custom------>
-                                            <h6><span>4.5</span></h6>
-                                        </div>
+                                       
+                                        <input type="text" name="room_id" value="<?= $_GET['id'] ?>" hidden>
                                         <button class="rq-btn-primary" type="submit">submit</button>
                                     </form>
                                 </div>
