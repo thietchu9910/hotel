@@ -9,7 +9,6 @@ $getServiceQuery = "select * from  service";
 $service = queryExecute($getServiceQuery, true);
 $room = queryExecute($getRoomQuery, false);
 $booking = queryExecute($getBookingQuery, false);
-
 //lấy dữ liệu room đổ sang booking
 ?>
 
