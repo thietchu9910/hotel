@@ -37,11 +37,15 @@ $service = queryExecute($getAllServiceSql, true);
 
 #lấy ra các gt của bản ghi trong contact
 $getAllContactSql = "select * from contact";
-$contacts = queryExecute($getAllContactSql);
+$contacts = queryExecute($getAllContactSql, true);
 
 #lấy ra các gt của bản ghi trong room_galleries
 $getAllRoom_galleriesSql = "select * from room_galleries";
-$room_galleries = queryExecute($getAllRoom_galleriesSql);
+$room_galleries = queryExecute($getAllRoom_galleriesSql, true);
+
+#lấy ra các gt của bản ghi trong custom_feedback
+$getAllCustom_feedbackSql = "select * from custom_feedback";
+$custom_feedback = queryExecute($getAllCustom_feedbackSql, true);
 ?>
 <!DOCTYPE html>
 <html>
@@ -208,6 +212,19 @@ $room_galleries = queryExecute($getAllRoom_galleriesSql);
                                 <i class="fas fa-phone-square-alt"></i>
                                 </div>
                                 <a href="<?= ADMIN_URL . 'contacts' ?>" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-success">
+                                <div class="inner">
+                                    <h3><?= count($custom_feedback) ?></h3>
+                                    <p>Custom_feedback</p>
+                                </div>
+                                <div class="icon">
+                                <i class="fas fa-phone-square-alt"></i>
+                                </div>
+                                <a href="<?= ADMIN_URL . 'custom_feedback' ?>" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     </div>

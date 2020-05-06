@@ -17,7 +17,6 @@ $updateCustom_feedbackQuery = "update custom_feedback
                                 reply_by = '$reply_by'
                             where id = '$id'";
 queryExecute($updateCustom_feedbackQuery, false);
-dd($updateCustom_feedbackQuery);
 header('location: '.ADMIN_URL. "custom_feedback");
 die;
 ?>

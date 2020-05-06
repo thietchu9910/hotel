@@ -213,6 +213,29 @@
                     
                 </li>
                 <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                    <i class="fas fa-comments-dollar"></i>                        <p>
+                            Custom_feedback
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= ADMIN_URL . 'custom_feedback' ?>" class="nav-link">
+                                <i class="fa fa-list-ol nav-icon"></i>
+                                <p>Danh sách</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= ADMIN_URL . 'custom_feedback/add-form.php' ?>" class="nav-link">
+                                <i class="fa fa-plus nav-icon"></i>
+                                <p>Edit custom_feedback</p>
+                            </a>
+                        </li>
+                    </ul>
+                    
+                </li>
+                <li class="nav-item has-treeview">
                     <a href="<?= BASE_URL . 'logout.php' ?>" class="nav-link">
                         <i class="nav-icon fas fa-sign-out-alt"></i>
                         <p>
