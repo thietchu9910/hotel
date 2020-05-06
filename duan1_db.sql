@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2020 at 12:36 PM
+-- Generation Time: May 06, 2020 at 01:32 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.4
 
@@ -45,8 +45,7 @@ CREATE TABLE `booking` (
 
 INSERT INTO `booking` (`id`, `name`, `status`, `room_id`, `adults`, `chidren`, `total_price`, `check_in`, `check_out`) VALUES
 (1, 'mnnn', 0, 0, '1', '2', '250', '2020-04-30', '2020'),
-(4, 'phòng vila', 0, 0, '2', '2', '3', '2020-04-30', '2020-05-01'),
-(5, NULL, 0, 54, ' ', ' ', NULL, '', '');
+(4, 'phòng vila', 0, 0, '2', '2', '3', '2020-04-30', '2020-05-01');
 
 -- --------------------------------------------------------
 
@@ -74,7 +73,9 @@ INSERT INTO `contact` (`id`, `name`, `email`, `phone`, `message`, `reply_by`, `r
 (17, 'thietcvph09326', 'thienth@gmail.com', '0963639870', '3555544', 13, NULL, '17', 1),
 (18, 'thietcvph09326', 'thienth@gmail.com', '0963639870', '3555544', NULL, NULL, NULL, NULL),
 (19, 'mnknnk', 'thietchu1004@gmail.com', '0963639870', 'ffggg', NULL, NULL, NULL, NULL),
-(20, 'thietcvph09326', 'thietcvph09326@fpt.edu.vn', '0963639870', 'minh vu', 13, NULL, '20', 1);
+(20, 'thietcvph09326', 'thietcvph09326@fpt.edu.vn', '0963639870', 'minh vu', 13, NULL, '20', 1),
+(21, '', '', '', '', NULL, NULL, NULL, NULL),
+(22, '', '', '', '', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -85,11 +86,22 @@ INSERT INTO `contact` (`id`, `name`, `email`, `phone`, `message`, `reply_by`, `r
 CREATE TABLE `custom_feedback` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL,
-  `rating` varchar(255) DEFAULT NULL,
-  `comment` varchar(255) DEFAULT NULL
+  `reply_content` varchar(255) DEFAULT NULL,
+  `comment` varchar(255) DEFAULT NULL,
+  `reply_by` varchar(191) NOT NULL,
+  `room_id` int(11) NOT NULL,
+  `goodidea` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `custom_feedback`
+--
+
+INSERT INTO `custom_feedback` (`id`, `name`, `email`, `status`, `reply_content`, `comment`, `reply_by`, `room_id`, `goodidea`) VALUES
+(22, 'nụ', 'nu@gmail.com', '1', 'ok', 'bẩn như chó', 'thietcvph09326', 55, 0),
+(23, 'Sơn', 'Son@gmail.com', '1', 'Cảm ơn bạn đã đánh giá dịch vụ', 'phòng rất đẹp và sạch sẽ, hẹn gặp lần sau', 'thietcvph09326', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -136,7 +148,9 @@ CREATE TABLE `our_team` (
 --
 
 INSERT INTO `our_team` (`id`, `member_name`, `position`, `image_url`, `facebook_url`, `twiter_url`, `linked_in_url`) VALUES
-(2, 'deo PERU', 'Relationship Manager', 'public/admin/img/our-team-1.jpg', 'public/admin/img/facebook.png', 'public/admin/img/twiter.png', 'public/admin/img/linkin.png');
+(2, 'deo PERU', 'Relationship Manager', 'public/admin/img/our-team-1.jpg', 'public/admin/img/facebook.png', 'public/admin/img/twitter.png', 'public/admin/img/linkin.png'),
+(57, 'Reo LA', 'Relationship Manager', 'public/admin/img/our-team-1.jpg', 'public/admin/img/facebook.png', 'public/admin/img/twitter.png', 'public/admin/img/linkin.png'),
+(58, 'Martin ', 'Chef', 'public/admin/img/our-team-2.jpg', 'public/admin/img/facebook.png', 'public/admin/img/twitter.png', 'public/admin/img/linkin.png');
 
 -- --------------------------------------------------------
 
@@ -184,7 +198,8 @@ CREATE TABLE `room` (
 INSERT INTO `room` (`id`, `name`, `featrue_image`, `status`, `short_desc`, `about`, `adults`, `children`, `price`) VALUES
 (54, 'large cafe', 'public/admin/img/palace-img1.jpg', '', 'point of using that has more less normal distribution is among', 'Decorated room, proper air condioned', 2, 3, '123'),
 (55, 'premium living', 'public/admin/img/palace-img2.jpg', '', 'point of using that has more less normal distribution is among', 'ryyyyuuuu', 1, 2, '250'),
-(56, 'rooftop cusine', 'public/admin/img/palace-img3.jpg', '', 'point of using that has more less normal distribution is among', 'ryyyyuuuu', 1, 2, '340');
+(56, 'rooftop cusine', 'public/admin/img/palace-img3.jpg', '', 'point of using that has more less normal distribution is among', 'ryyyyuuuu', 1, 2, '340'),
+(63, 'SUNROOM', 'public/admin/img/palace-img3.jpg', NULL, 'point of using that has more less normal distribution is among', NULL, NULL, NULL, '300');
 
 -- --------------------------------------------------------
 
@@ -193,7 +208,7 @@ INSERT INTO `room` (`id`, `name`, `featrue_image`, `status`, `short_desc`, `abou
 --
 
 CREATE TABLE `room_galleries` (
-  `                id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `room_id` int(11) NOT NULL,
   `img_url` varchar(191) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -202,10 +217,13 @@ CREATE TABLE `room_galleries` (
 -- Dumping data for table `room_galleries`
 --
 
-INSERT INTO `room_galleries` (`                id`, `room_id`, `img_url`) VALUES
-(1, 1, 'public/admin/img/5e9c7bb859d1c-5e9b3c5698a2e-5e9b3b7821ae2-5e9924069a0f6-Nơi_này_có_anh_-_Single_Cover.jpg'),
-(2, 1, 'public/admin/img/about-suprime-1.jpg'),
-(3, 1, 'public/admin/img/about-suprime-2.jpg');
+INSERT INTO `room_galleries` (`id`, `room_id`, `img_url`) VALUES
+(1, 54, 'public/admin/img/single-room-pic3-big.jpg'),
+(2, 54, 'public/admin/img/single-room-pic4-big.jpg'),
+(3, 54, 'public/admin/img/single-room-pic6-big.jpg'),
+(4, 54, 'public/admin/img/single-room-pic5-big.jpg'),
+(5, 54, 'public/admin/img/single-room-pic2-big.jpg'),
+(7, 54, 'public/admin/img/single-room-pic1-big.jpg');
 
 -- --------------------------------------------------------
 
@@ -226,7 +244,6 @@ CREATE TABLE `service` (
 --
 
 INSERT INTO `service` (`id`, `img_url`, `price`, `short_desc`, `name`) VALUES
-(13, 'public/admin/img/room-package-img-1.jpg', '120', 'fettyyy', 'COMBO BUFFET'),
 (14, 'public/admin/img/room-package-img-4.jpg', '200', '<br /><b>Notice</b>:  Undefined index: short_desc in <b>C:xampphtdocsduan1admin\roomedit-form.php</b> on line <b>65</b><br />', 'MASTER ROOM'),
 (15, 'public/admin/img/room-package-img-2.jpg', '100', 'mncmccmc', 'DINNER PACKEGRE'),
 (16, 'public/admin/img/room-package-img-3.jpg', '200', '', 'SUN DELUXE');
@@ -279,7 +296,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `number_phone`, `email`, `password`, `status`, `role_id`) VALUES
 (5, 'Sơn', '123123123123', 'son@gmail.com', '$2y$10$fFhWJhzJcQMfiAoeL7337uNVb.lFSUxlhiWyauAoewVOGKAU7e4Yi', '1', 1),
 (13, 'thietcvph09326', '0963639870', 'thietchu1004@gmail.com', '$2y$10$sqz/rvA.3OE669h9ByEZ4ePxAYww5kB0k57jYbP/EFKewg6fTMpga', '1', 3),
-(14, 'thietcvph09326', '1234567890', 'helgrindxxx@gmail.com', '$2y$10$u3I1WM4meciv871UrxX51eMQV8Jq7g70uOkuqXSMk/89dhSYuYF8S', NULL, 2);
+(14, 'thietcvph09326', '1234567890', 'thietchu1004@gmail.com', '$2y$10$u3I1WM4meciv871UrxX51eMQV8Jq7g70uOkuqXSMk/89dhSYuYF8S', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -362,7 +379,7 @@ ALTER TABLE `room`
 -- Indexes for table `room_galleries`
 --
 ALTER TABLE `room_galleries`
-  ADD PRIMARY KEY (`                id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `service`
@@ -408,13 +425,13 @@ ALTER TABLE `booking`
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `custom_feedback`
 --
 ALTER TABLE `custom_feedback`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `news`
@@ -426,7 +443,7 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT for table `our_team`
 --
 ALTER TABLE `our_team`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -438,13 +455,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `room_galleries`
 --
 ALTER TABLE `room_galleries`
-  MODIFY `                id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `service`
