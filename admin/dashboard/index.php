@@ -30,6 +30,18 @@ $our_team = queryExecute($getAllOur_teamSql, true);
 # lấy ra các gt của bản ghi trong room
 $getAllRoomSql = "select * from room";
 $room = queryExecute($getAllRoomSql, true);
+
+#lấy ra các gt của bản ghi trong service
+$getAllServiceSql = "select * from service";
+$service = queryExecute($getAllServiceSql, true);
+
+#lấy ra các gt của bản ghi trong contact
+$getAllContactSql = "select * from contact";
+$contacts = queryExecute($getAllContactSql);
+
+#lấy ra các gt của bản ghi trong room_galleries
+$getAllRoom_galleriesSql = "select * from room_galleries";
+$room_galleries = queryExecute($getAllRoom_galleriesSql);
 ?>
 <!DOCTYPE html>
 <html>
@@ -95,7 +107,7 @@ $room = queryExecute($getAllRoomSql, true);
                                     <p>Our_team</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="fa fa-motorcycle"></i>
+                                <i class="fas fa-users-cog"></i></i>
                                 </div>
                                 <a href="<?= ADMIN_URL . 'our_team' ?>" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
@@ -103,7 +115,7 @@ $room = queryExecute($getAllRoomSql, true);
                         <!-- ./col -->
                         <div class="col-lg-4 col-6">
                             <!-- small box -->
-                            <div class="small-box bg-secondary">
+                            <div class="small-box bg-danger">
                                 <div class="inner">
                                     <h3><?= count($booking) ?></h3>
                                     <p>Booking</p>
@@ -120,27 +132,27 @@ $room = queryExecute($getAllRoomSql, true);
                         <!-- ./col -->
                         <div class="col-lg-4 col-6">
                             <!-- small box -->
-                            <div class="small-box bg-success">
+                            <div class="small-box bg-warning">
                                 <div class="inner">
                                     <h3><?= count($news) ?></h3>
 
                                     <p>News</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="fa fa fa-truck"></i>
+                                <i class="far fa-newspaper"></i></i>
                                 </div>
                                 <a href="<?= ADMIN_URL . 'news' ?>" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                         <div class="col-lg-4 col-6">
-                            <div class="small-box bg-success">
+                            <div class="small-box bg-danger">
                                 <div class="inner">
                                     <h3><?= count($room) ?></h3>
 
                                     <p>Room</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="fa fa fa-truck"></i>
+                                <i class="fas fa-person-booth"></i>
                                 </div>
                                 <a href="<?= ADMIN_URL . 'room' ?>" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
@@ -148,15 +160,54 @@ $room = queryExecute($getAllRoomSql, true);
                         <!-- ./col -->
                         <div class="col-lg-4 col-6">
                             <!-- small box -->
-                            <div class="small-box bg-danger">
+                            <div class="small-box bg-success">
                                 <div class="inner">
                                     <h3><?= count($web_setting) ?></h3>
                                     <p>Web_setting</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="fa fa-route"></i>
+                                <i class="fas fa-sliders-h"></i>
                                 </div>
                                 <a href="<?= ADMIN_URL . 'web_setting' ?>" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-danger">
+                                <div class="inner">
+                                    <h3><?= count($service) ?></h3>
+                                    <p>Room_service</p>
+                                </div>
+                                <div class="icon">
+                                <i class="fab fa-servicestack"></i></i>
+                                </div>
+                                <a href="<?= ADMIN_URL . 'service' ?>" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-success">
+                                <div class="inner">
+                                    <h3><?= count($room_galleries) ?></h3>
+                                    <p>Room_galleries</p>
+                                </div>
+                                <div class="icon">
+                                <i class="far fa-images"></i>
+                                </div>
+                                <a href="<?= ADMIN_URL . 'room_galleries' ?>" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-secondary">
+                                <div class="inner">
+                                    <h3><?= count($contacts) ?></h3>
+                                    <p>Contact</p>
+                                </div>
+                                <div class="icon">
+                                <i class="fas fa-phone-square-alt"></i>
+                                </div>
+                                <a href="<?= ADMIN_URL . 'contacts' ?>" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     </div>
