@@ -122,7 +122,7 @@ $custom_feedback = queryExecute($getCustom_feedbackQuery, false);
                                                     <?= $s['name'] ?>
                                                 </label>
                                             </div>
-                                            <p><span>$<?= $s['price'] ?></span>/ Group / Trip</p>
+                                            <p><span></span>Group / Trip</p>
                                        
                                     </div>
                                     <?php endforeach; ?>

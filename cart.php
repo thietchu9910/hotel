@@ -5,8 +5,11 @@ $loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
 $id = $_GET['id'];
 $getBookingQuery = "select * from booking where id = $id";
 $getRoomQuery = "select * from room r join booking b on r.id=b.room_id";
+$getServiceQuery = "select * from  service";
+$service = queryExecute($getServiceQuery, true);
 $room = queryExecute($getRoomQuery, false);
 $booking = queryExecute($getBookingQuery, false);
+
 //lấy dữ liệu room đổ sang booking
 ?>
 
@@ -26,49 +29,7 @@ $booking = queryExecute($getBookingQuery, false);
 
 <body>
 
-  <!--================================
-                SIDE MENU
-    =================================-->
-  <!-- PAGE OVERLAY WHEN MENU ACTIVE -->
-  <div class="rq-side-menu-overlay"></div>
-  <!-- PAGE OVERLAY WHEN MENU ACTIVE END -->
-
-  <div class="rq-side-menu-wrap">
-    <!-- OVERLAY -->
-    <div class="rq-dark-overlay"></div>
-    <!-- OVERLAY END -->
-
-    <div id="rq-side-menu" class="rq-side-menu">
-      <div class="rq-side-menu-widget-wrap">
-        <div class="rq-login-form-wrapper">
-          <h3>User Login</h3>
-          <p>Login to add new listing </p>
-
-          <div class="rq-login-form">
-            <form action="#" method="POST">
-              <input type="text" name="rq-user-name" id="rq-user-input" placeholder="User Name">
-              <input type="password" name="rq-user-password" id="rq-user-password" placeholder="Password">
-              <button type="submit">Login</button>
-            </form>
-          </div>
-
-          <div class="rq-social-login-opt">
-            <a href="#" class="rq-social-login-btn rq-facebook-login">Login with Facebook</a>
-            <a href="#" class="rq-social-login-btn rq-twitter-login">Login with Twitter</a>
-          </div>
-
-          <div class="rq-other-options">
-            <a href="#" class="rq-forgot-pass">Forget Password ?</a>
-            <a href="#" class="rq-signup">Sign up</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <button class="rq-side-menu-close-button" id="rq-side-menu-close-button">Close Menu</button>
-  </div>
-  <!-- SIDE MENU END -->
-
+  
 
   <?= require_once './public/_share/header.php' ?>
   <div class="rq-checkout-banner">
@@ -84,17 +45,10 @@ $booking = queryExecute($getBookingQuery, false);
   </div><!-- / rq-banner-area-->
   <div class="rq-cart">
     <div class="container">
-      <div class="row">
-        <div class="col-md-4 col-sm-5 col-xs-12">
-          <div class="cart-left-side">
-            <h4>Subtotal <span class="label label-default pull-right">$250</span></h4>
-            <h3>total <span class="label label-default pull-right">$<?= $room['price']?></span></h3>
-            <a class="btn rq-btn-secondary form-control" href="">update cart</a>
-            <button class="rq-btn-primary form-control" type="submit">proceed checkout</button>
-          </div>
-        </div>
+      <div class="row justify-content-center">
+       
         <!--- col-md-4 ------>
-        <div class="col-md-8 col-sm-7 col-xs-12">
+        <div class="col-md-8 ml-8 ">
           <div class="rq-cart-table">
             <table class="table" style="width:100%;">
               <tr class="rq-table-heading" style="text-align: left;">
@@ -127,11 +81,9 @@ $booking = queryExecute($getBookingQuery, false);
                                             ?>
                                             </span></td>
               </tr>
-              <tr class="rq-table-border">
-              
-                 
+             
                
-              </tr>
+              
             </table>
           </div>
         </div>
