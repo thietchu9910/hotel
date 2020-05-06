@@ -5,12 +5,12 @@ checkAdminLoggedIn();
 // get id from url
 $id = isset($_GET['id']) ? $_GET['id'] : -1;
 
-$getRemoveOur_teamQuery = "select * from our_team where id = $id";
-$removeOur_team = queryExecute($getRemoveOur_teamQuery, false);
+$getRemoveroom_galleriesQuery = "select * from room_galleries where id = $id";
+$removeRoom_galleries = queryExecute($getRemoveRoom_galleriesQuery, false);
 
 // s
 
-$removeOur_teamQuery = "delete from our_team where id = '$id'";
-queryExecute($removeOur_teamQuery, false);
-header("location: " . ADMIN_URL . "our_team?msg=Xóa loại phương tiện thành công");
+$removeRoom_galleriesQuery = "delete from room_galleries where id = '$id'";
+queryExecute($removeRoom_galleriesQuery, false);
+header("location: " . ADMIN_URL . "room_galleries?msg=Xóa galleries thành công");
 die;

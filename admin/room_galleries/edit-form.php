@@ -7,6 +7,9 @@ $id = isset($_GET['id']) ? $_GET['id'] : -1;
 // get data from vehicle types tables by id
 $getRoom_galleriesEditQuery = "select * from room_galleries where id = '$id'";
 $room_galleriesEdit = queryExecute($getRoom_galleriesEditQuery, false);
+
+$getRoomQuery = "select * from room";
+$room = queryExecute($getRoomQuery, true);
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,11 +52,13 @@ $room_galleriesEdit = queryExecute($getRoom_galleriesEditQuery, false);
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">Room_id<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="room_id" value="<?= $room_galleriesEdit['room_id'] ?>">
-                                    <?php if (isset($_GET['room_iderr'])) : ?>
-                                        <label class="error"><?= $_GET['room_iderr'] ?></label>
-                                    <?php endif; ?>
+                                    <label for="">Room<span class="text-danger">*</span></label>
+                                    <select id="statusRG" class="form-control" name="room_id">
+                                        <option value="">Chọn loại phòng</option>
+                                        <?php foreach ($room as $r) : ?>
+                                            <option value="<?= $r['id'] ?>" <?php if ($r['id'] == $room_galleriesEdit['room_id']) : ?>selected<?php endif; ?>><?= $r['name'] ?></option>
+                                        <?php endforeach ?>
+                                    </select>
                                 </div>
                               
                                 
@@ -61,13 +66,16 @@ $room_galleriesEdit = queryExecute($getRoom_galleriesEditQuery, false);
                             </div>
                             <div class="col-md-6">
                            
-                                <div class="form-group d-flex justify-content-center">
-                                    <img src="<?= BASE_URL . $news['image_url']  ?>" width="300" id="preview-img" alt="">
+                            <div class="col-6 offset-md-3">
+                                    <img src="<?= BASE_URL . $room_galleriesEdit['img_url'] ?>" id="preview-img" class="img-fluid">
                                 </div>
-                                <div class="input-group mb-3">
+                                <div class="input-group mb-3 mt-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Ảnh<span class="text-danger">*</span></span>
+                                    </div>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="inputGroupFile01" name="image_url" onchange="util.convertImg(this, '#preview-img', '<?= BASE_URL . $news['image_url']?>')">
-                                        <label class="custom-file-label" for="inputGroupFile01">Ảnh<span class="text-danger">*</span></label>
+                                        <input type="file" class="custom-file-input" id="inputGroupFile01" name="img_url" onchange="util.convertImg(this, '#preview-img', '<?= BASE_URL . $room_galleries['img_url'] ?>')">
+                                        <label class="custom-file-label" for="inputGroupFile01">Chọn ảnh</label>
                                     </div>
                                 </div>
                                 <div class="from-group pt-2">

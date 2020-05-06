@@ -4,27 +4,21 @@ include_once "../../config/utils.php";
 checkAdminLoggedIn();
 // lấy thông tin từ form gửi lên
 $id = trim($_POST['id']);
-$member_name = trim($_POST['member_name']);
-$position = trim($_POST['postion']);
-$image_url = $_FILES['image_url'];
-$facebook_url = trim($_POST['facebook']);
-$twiter_url = trim($_POST['twiter_url']);
+$room_id = trim($_POST['room_id']);
+$img_url = $_FILES['img_url'];
 
 $filename = "";
-if($image_url['size'] > 0){
-    $filename = uniqid() . '-' . $image_url['name'];
-    move_uploaded_file($image_url['tmp_name'], "../../public/admin/img/" . $filename);
+if($img_url['size'] > 0){
+    $filename = uniqid() . '-' . $img_url['name'];
+    move_uploaded_file($img_url['tmp_name'], "../../public/admin/img/" . $filename);
     $filename = "public/admin/img/" . $filename;
 }
 
-$updateOur_teamQuery = "update our_team
+$updateRoom_galleriesQuery = "update room_galleries
                     set
-                          member_name = '$member_name',
-                          position = '$position',
-                          facebook_url = '$facebook',
-                          twiter_url = '$twiter',
-                          linked_in_url = '$linked_in_url'
+                          room_id = '$room_id',
+                          img_url = '$filename',
                     where id = '$id'";
-queryExecute($updateOur_teamQuery, false);
-header("location: " . ADMIN_URL . "our_team");
+queryExecute($updateRoom_galleriesQuery, false);
+header("location: " . ADMIN_URL . "room_galleries");
 die;

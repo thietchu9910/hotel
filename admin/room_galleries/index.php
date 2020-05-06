@@ -9,20 +9,11 @@ $id = isset($_GET['id']) ? $_GET['id'] : -1;
 $keyword = isset($_GET['keyword']) == true ? $_GET['keyword'] : "";
 $status = isset($_GET['status']) == true ? $_GET['status'] : "";
 // get vehicle types query
-$getroom_galleriesQuery = "select * from room_galleries";
-// điều kiện tìm kiếm
-if ($keyword !== "" && $keyword !== false) {
-    $getroom_galleriesQuery .= " where (name like '%$keyword%'
-                                    or seat like '%$keyword%')";
-    if ($status !== "" && $status !== false) {
-        $getroom_galleriesQuery .= " and status = '$status'";
-    }
-} else {
-    if ($status !== "" && $status !== false) {
-        $getroom_galleriesQuery .= " where status = '$status'";
-    }
-}
-$room_galleries = queryExecute($getroom_galleriesQuery, true);
+$getRoom_galleriesQuery = "select  rg.*, r.name as name 
+                                   from room_galleries rg 
+                                   join room r 
+                                   on rg.room_id=r.id";
+$room_galleries = queryExecute($getRoom_galleriesQuery, true);
 ?>
 
 
@@ -92,27 +83,27 @@ $room_galleries = queryExecute($getroom_galleriesQuery, true);
                             <thead>
                                 <th>ID</th>
                                 <th>Room_id</th>
-                                <th>img_url</th>
+                                <th width="200px">img_url</th>
                               
                                 <th>
                                     <a href="<?php echo ADMIN_URL . 'room_galleries/add-form.php' ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm</a>
                                 </th>
                             </thead>
                             <tbody>
-                                <?php foreach ($room_galleries as $ot) : ?>
+                                <?php foreach ($room_galleries as $rg) : ?>
                                     <tr>
-                                        <td><?= $ot['id'] ?></td>
-                                        <td><?= $ot['room_id'] ?></td>
+                                        <td><?= $rg['id']?></td>
+                                        <td><?= $rg['name'] ?></td>
                                         <td>
-                                            <img class="img-fluid" src="<?= BASE_URL . $ot['image_url'] ?>" alt="">
+                                            <img class="img-fluid" src="<?= BASE_URL . $rg['img_url'] ?>" alt="">
                                         </td>
                                         
 
                                         <td>
-                                            <a href="<?php echo ADMIN_URL . 'room_galleries/edit-form.php?id=' . $ot['id'] ?>" class="btn btn-sm btn-info">
+                                            <a href="<?php echo ADMIN_URL . 'room_galleries/edit-form.php?id=' . $rg['id'] ?>" class="btn btn-sm btn-info">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
-                                            <a href="<?php echo ADMIN_URL . 'room_galleries/remove.php?id=' . $ot['id'] ?>" class="btn-remove btn btn-sm btn-danger">
+                                            <a href="<?php echo ADMIN_URL . 'room_galleries/remove.php?id=' . $rg['id'] ?>" class="btn-remove btn btn-sm btn-danger">
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                         </td>
@@ -154,7 +145,7 @@ $room_galleries = queryExecute($getroom_galleriesQuery, true);
             });
             <?php if (isset($_GET['msg'])) : ?>
                 Swal.fire({
-                    position: 'bottom-center',
+                    position: 'brgtom-center',
                     icon: 'warning',
                     title: "<?= $_GET['msg']; ?>",
                     showConfirmButton: false,
