@@ -2,8 +2,8 @@
 session_start();
 require_once "./config/utils.php";
 $loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
-$getOur_team = "select * form our_team";
-$our_team = queryExecute($getOur_team);
+$getOur_team = "select * from our_team";
+$our_team = queryExecute($getOur_team, true);
 ?>
 
 
@@ -113,17 +113,19 @@ $our_team = queryExecute($getOur_team);
           <section id="our-team">
             <h2 class="text-center">Our TEam</h2>
             <div class="row">
-              <?php foreach ($our_team as $ot) : ?>
+            <?php foreach ($our_team as $ot) : ?>
               <div class="rq-team-member col-md-4 col-sm-4 col-xs-12">
+              
                 <div class="thumbnail view second-effect">
                   <div class="rq-image-wrapper">
                       <picture>
-                          <source media="(min-width: 768px)" srcset=<?= $ot['image_url'] ?>>
+                          <source media="(min-width: 768px)" srcset=<?= BASE_URL . $ot['image_url'] ?>>
                           <img alt="Image" src="<?= $ot['image_url'] ?>" srcset=<?= $ot['image_url'] ?>>
                       </picture>
                        <ul class="mask">
                            <li class="rq-facebook">
                               <a href="#" class="info"><img src="<?= $ot['facebook_url'] ?>" alt="Facebook"/></a>   
+                            
                            </li>
 
                            <li class="rq-twitter">
@@ -140,10 +142,9 @@ $our_team = queryExecute($getOur_team);
                     <p><?= $ot['position']?></p>
                   </div>
                 </div>
+                
               </div>
-              <?php endforeach;?>
-
-              
+              <?php endforeach;?>            
             </div>
           </section><!-- / rq-about-us -->
         </div>
