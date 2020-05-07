@@ -1,11 +1,25 @@
 <?php
 session_start();
 require_once "./config/utils.php";
-
+$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 $loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
 
-$getRoomQuery = "select * from room limit 4";
-$room = queryExecute($getRoomQuery, true);
+$getRoomQuery = "select * from room";
+$total_records = count(queryExecute($getRoomQuery, true));
+
+$limit = 4;
+$total_page = ceil($total_records / $limit);
+
+$start = 1 + ($current_page - 1) * $limit;
+
+if ($current_page > $total_page) {
+  $current_page = $total_page;
+} else if ($current_page < 1) {
+  $current_page = 1;
+}
+
+$getAllRoomQuery = "select * from room limit $start, $limit";
+$room = queryExecute($getAllRoomQuery, true);
 ?>
 
 
@@ -26,7 +40,7 @@ $room = queryExecute($getRoomQuery, true);
   <div id="rq-circle-loader-wrapper">
     <div id="rq-circle-loader-center">
       <div class="rq-circle-load">
-        <img src="<?= ADMIN_ASSET_URL .'img/oval.svg'?>" alt="Page Loader">
+        <img src="<?= ADMIN_ASSET_URL . 'img/oval.svg' ?>" alt="Page Loader">
       </div>
     </div>
   </div>
@@ -86,7 +100,7 @@ $room = queryExecute($getRoomQuery, true);
                         <div class="form-group">
                           <input type="date" class="form-control">
                         </div>
-                       
+
                       </div>
 
                       <div class="col-sm-6">
@@ -96,7 +110,7 @@ $room = queryExecute($getRoomQuery, true);
                         </div>
                       </div>
                     </div><!--  / date & time picker -->
-                    
+
                     <div class="col-md-6">
                       <h2>total Room</h2>
                       <div class="rq-total">
@@ -166,11 +180,11 @@ $room = queryExecute($getRoomQuery, true);
 
       <div id="rq-side-menu" class="rq-side-menu">
         <div class="rq-side-menu-widget-wrap">
-         
+
         </div>
       </div>
 
-      
+
     </div>
     <!-- SIDE MENU END -->
 
@@ -320,8 +334,8 @@ $room = queryExecute($getRoomQuery, true);
                           <p><?= $ro['short_desc'] ?></p>
                           <div class="singleRoom-grid-main-custom">
                             <div class="row">
-                              <h4><span>$<?= $ro['price']?></span> / Night</h4>
-                              <h5> <a class="btn rq-btn-secondary" href="single-room.php?id=<?= $ro['id']?>"  data-target="#myModal">SELECT</a></h5>
+                              <h4><span>$<?= $ro['price'] ?></span> / Night</h4>
+                              <h5> <a class="btn rq-btn-secondary" href="single-room.php?id=<?= $ro['id'] ?>" data-target="#myModal">SELECT</a></h5>
                             </div>
                           </div>
                         </div>
@@ -330,6 +344,25 @@ $room = queryExecute($getRoomQuery, true);
                   <?php endforeach; ?>
                   <!----row---->
                   <!-- <button><i class="fa fa-spinner" aria-hidden="true"></i>LOAD MORE</button> -->
+                </div>
+                <div class="text-center">
+                  <ul class="pagination">
+                    <?php
+                    if ($current_page > 1 && $total_page > 1) {
+                      echo '<li class="page-item"><a class="page-link" href="./select-room-grid.php?page=' . ($current_page - 1) . '">Previous</a></li>';
+                    }
+                    for ($i = 1; $i <= $total_page; $i++) {
+                      if ($i == $current_page) {
+                        echo '<li class="page-item active"><a class="page-link" href="./select-room-grid.php?page=' . $i . '">' . $i . '</a></li>';
+                      } else {
+                        echo '<li class="page-item"><a class="page-link" href="./select-room-grid.php?page=' . $i . '">' . $i . '</a></li>';
+                      }
+                    }
+                    if ($current_page < $total_page && $total_page > 1) {
+                      echo '<li class="page-item"><a class="page-link" href="./select-room-grid.php?page=' . ($current_page + 1) . '">Next</a></li>';
+                    }
+                    ?>
+                  </ul>
                 </div>
                 <!------ singleRoom-grid-main -------->
               </div>

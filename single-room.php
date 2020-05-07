@@ -14,7 +14,7 @@ $id = $_GET['id'];
 $getRoomQuery = "select * from room where id ='$id'";
 $room = queryExecute($getRoomQuery, false);
 
-$getCustom_feedbackQuery = "select * from Custom_feedback where goodidea=1";
+$getCustom_feedbackQuery = "select * from custom_feedback where goodidea=1";
 $custom_feedback = queryExecute($getCustom_feedbackQuery, false);
 ?>
 
