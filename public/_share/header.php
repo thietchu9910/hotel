@@ -25,11 +25,6 @@
                     </li>
                     <li>
                         <a href="select-room-grid.php">Room</a>
-                        <ul class="rq-sub-menu">
-                            <li>
-                                <a href="single-room.php">Single Room</a>
-                            </li>
-                        </ul>
                     </li>
                     <li>
                         <a href="about-us.php">About</a>
@@ -39,15 +34,7 @@
                     </li>
                     <li>
                         <a href="blog.php">Blog</a>
-                        <ul class="rq-sub-menu">
-                            <li>
-                                <a href="blog.php">Blog</a>
-                            </li>
-                            <li>
-                                <a href="blog-details.php">Blog Details</a>
-                            </li>
-                            
-                        </ul>
+                        
                     </li>
                     
                     <li>

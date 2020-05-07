@@ -10,7 +10,8 @@ $RoomGalleries = queryExecute($getRoomGalleries, true);
 $getService = "select * from service";
 $service = queryExecute($getService, true);
 
-$getRoomQuery = "select * from room";
+$id = $_GET['id'];
+$getRoomQuery = "select * from room where id ='$id'";
 $room = queryExecute($getRoomQuery, false);
 
 $getCustom_feedbackQuery = "select * from Custom_feedback where goodidea=1";

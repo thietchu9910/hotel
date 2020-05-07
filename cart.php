@@ -4,11 +4,13 @@ require_once "./config/utils.php";
 $loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
 $id = $_GET['id'];
 $getBookingQuery = "select * from booking where id = $id";
-$getRoomQuery = "select * from room r join booking b on r.id=b.room_id";
+$booking = queryExecute($getBookingQuery, false);
+$room_id = $booking['room_id'];
+$getRoomQuery = "select * from room where id = '$room_id'";
+$room = queryExecute($getRoomQuery, false);
+
 $getServiceQuery = "select * from  service";
 $service = queryExecute($getServiceQuery, true);
-$room = queryExecute($getRoomQuery, false);
-$booking = queryExecute($getBookingQuery, false);
 //lấy dữ liệu room đổ sang booking
 ?>
 
