@@ -17,7 +17,7 @@ $room = queryExecute($getRoomQuery, false);
 $getCustom_feedbackQuery = "select * from custom_feedback where goodidea=1";
 $custom_feedback = queryExecute($getCustom_feedbackQuery, false);
 
-$msg = isset($_GET['msg']) ? $_GET['msg'] : "";
+
 ?>
 
 <!DOCTYPE html>
@@ -71,7 +71,11 @@ $msg = isset($_GET['msg']) ? $_GET['msg'] : "";
                     <div class="col-md-4 col-sm-5 col-lg-4">
                         <form id="validate-form" action="<?= BASE_URL . 'save-booking.php' ?>" method="POST">
                             <div class="rq-single-room-checkin">
-                                <input type="hidden" name="idRoom" value="<?=$id?>" >
+                                <div class="rq-check-in-out-wrapper">
+
+
+
+                                </div>
                                 <h2>CHECK IN</h2>
                                 <div class="rq-total">
                                     <div class=""></div>
@@ -79,6 +83,7 @@ $msg = isset($_GET['msg']) ? $_GET['msg'] : "";
                                     <?php if (isset($_GET['check_inerr'])) : ?>
                                         <label class="error"><?= $_GET['check_inerr'] ?></label>
                                     <?php endif; ?>
+                                   
                                 </div>
                                 <h2>CHECK OUT</h2>
                                 <div class="rq-total">
@@ -177,8 +182,12 @@ $msg = isset($_GET['msg']) ? $_GET['msg'] : "";
                         <!------------/rq-singleRoom-text-head ---------------------->
                         <div class="rq-single-room-para">
                             <p><?= $room['about'] ?></p>
+
+
                         </div>
                         <!------------/rq-single-room-para---------------------->
+
+
                         <article class="comments">
                             <h3>COMMENTS</h3>
                             <ul class="media-list">
@@ -248,24 +257,16 @@ $msg = isset($_GET['msg']) ? $_GET['msg'] : "";
     </div>
     <?php require_once "public/_share/script.php"; ?>
     <script type="text/javascript">
-        $('#validate-form').click(function() {
+      $('#validate-form').click(function(){
+        
+        var check_in = $("#check_in").val();
+        var check_out = $("#check_out").val();
+        if(check_out < check_in) {
+            alert ('nhập lại');
+        }
 
-            var check_in = $("#check_in").val();
-            var check_out = $("#check_out").val();
-            if (check_out < check_in) {
-                alert('nhập lại');
-            }
-
-        });
-        <?php if (isset($_GET['msg'])) : ?>
-            Swal.fire({
-                position: 'bottom-end',
-                icon: 'success',
-                title: "<?= $_GET['msg']; ?>",
-                showConfirmButton: false,
-                timer: 1500
-            });
-        <?php endif; ?>
+      }) ;
+   
     </script>
 
 </body>

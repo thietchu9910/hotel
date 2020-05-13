@@ -31,7 +31,7 @@ function getdbConn(){
 }
 
 #thuc thi cau lenh sql duoc dung san
-#@ts1: $sql - câu lệnh cần được
+#@ts1: $sql - câu lệnh cần được 
 #@ts2: $fetchAll - (true/false)
 #true: lấy hết tất cả các kết quả trả về của câu sql
 #fasle: trả về kết quả đầu tiên tìm được của câu lệnh sql
