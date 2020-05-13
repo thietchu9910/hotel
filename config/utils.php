@@ -18,7 +18,7 @@ define("INACTIVE", -1);
 function getdbConn(){
     try {
         $host = "127.0.0.1";
-        $dbname = "duan1_thiet";
+        $dbname = "duan1_db";
         $dbusername = "root";
         $dbpass = "";
 
