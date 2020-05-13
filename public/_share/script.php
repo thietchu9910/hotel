@@ -14,3 +14,4 @@
   <script src="<?= ADMIN_ASSET_URL ?>js/jquery.raty.js"></script>
   <script src="<?= ADMIN_ASSET_URL ?>js/jquery.datetimepicker.full.min.js"></script>
   <script src="<?= ADMIN_ASSET_URL ?>js/scripts.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>

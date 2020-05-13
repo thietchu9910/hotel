@@ -170,11 +170,11 @@ $roles = queryExecute($getRoleQuery, true);
                     }
                 },
                 messages: {
-                    name: {
-                        required: "Hãy nhập tên người dùng",
-                        maxlength: "Số lượng ký tự tối đa bằng 191 ký tự",
-                        minlength: "Nhập tối thiểu 2 kí tự"
-                    },
+                    // name: {
+                    //     required: "Hãy nhập tên người dùng",
+                    //     maxlength: "Số lượng ký tự tối đa bằng 191 ký tự",
+                    //     minlength: "Nhập tối thiểu 2 kí tự"
+                    // },
                     email: {
                         required: "Hãy nhập email",
                         maxlength: "Số lượng ký tự tối đa bằng 191 ký tự",

@@ -123,7 +123,24 @@ $loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
         <?php require_once "./public/_share/footer.php"?>
     </div><!-- main-wrapper -->
     <?php require_once "./public/_share/script.php"; ?>
+    <script>
+        $(document).ready(() => {
+            <?php if (isset($_GET['msg'])) : ?>
+                Swal.fire({
+                    position: 'bottom-end',
+                    icon: 'success',
+                    title: "<?= $_GET['msg']; ?>",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            <?php endif; ?>
+            setTimeout(() => {
+                sessionStorage.clear();
+            }, 2500);
+        });
+    </script>
 </body>
+
 
 <!-- Mirrored from redqteam.com/sites/houston/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 24 Mar 2020 06:52:20 GMT -->
 

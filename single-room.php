@@ -16,6 +16,8 @@ $room = queryExecute($getRoomQuery, false);
 
 $getCustom_feedbackQuery = "select * from custom_feedback where goodidea=1";
 $custom_feedback = queryExecute($getCustom_feedbackQuery, false);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -67,7 +69,7 @@ $custom_feedback = queryExecute($getCustom_feedbackQuery, false);
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-sm-5 col-lg-4">
-                        <form action="<?= BASE_URL . 'save-booking.php' ?>" method="POST">
+                        <form id="validate-form" action="<?= BASE_URL . 'save-booking.php' ?>" method="POST">
                             <div class="rq-single-room-checkin">
                                 <div class="rq-check-in-out-wrapper">
 
@@ -77,12 +79,19 @@ $custom_feedback = queryExecute($getCustom_feedbackQuery, false);
                                 <h2>CHECK IN</h2>
                                 <div class="rq-total">
                                     <div class=""></div>
-                                    <input type="date" class="form-control" name="check_in">
+                                    <input type="date" class="form-control" name="check_in" id="check_in">
+                                    <?php if (isset($_GET['check_inerr'])) : ?>
+                                        <label class="error"><?= $_GET['check_inerr'] ?></label>
+                                    <?php endif; ?>
+                                   
                                 </div>
                                 <h2>CHECK OUT</h2>
                                 <div class="rq-total">
                                     <div class=""></div>
                                     <input type="date" class="form-control" name="check_out">
+                                    <?php if (isset($_GET['check_outerr'])) : ?>
+                                        <label class="error"><?= $_GET['check_outerr'] ?></label>
+                                    <?php endif; ?>
                                 </div>
                                 <!--  / date & time picker -->
 
@@ -115,17 +124,17 @@ $custom_feedback = queryExecute($getCustom_feedbackQuery, false);
                                 <!-------  /row  ------------>
                                 <h2>extra service</h2>
                                 <div class="rq-extra">
-                                <?php foreach ($service as $s) : ?>
-                                    <div class="rq-extra-content">
-                                       
+                                    <?php foreach ($service as $s) : ?>
+                                        <div class="rq-extra-content">
+
                                             <div class="checkbox">
                                                 <label>
                                                     <?= $s['name'] ?>
                                                 </label>
                                             </div>
                                             <p><span></span>Group / Trip</p>
-                                       
-                                    </div>
+
+                                        </div>
                                     <?php endforeach; ?>
                                     <br>
                                     <input type="text" name="room_id" value="<?= $_GET['id'] ?>" hidden>
@@ -168,7 +177,7 @@ $custom_feedback = queryExecute($getCustom_feedbackQuery, false);
                                 <h2><?php echo $room['name'] ?></h2>
                                 <h4><span><?php echo $room['price'] ?> / </span> Night</h4>
                             </div>
-                           
+
                         </div>
                         <!------------/rq-singleRoom-text-head ---------------------->
                         <div class="rq-single-room-para">
@@ -177,59 +186,59 @@ $custom_feedback = queryExecute($getCustom_feedbackQuery, false);
 
                         </div>
                         <!------------/rq-single-room-para---------------------->
-                       
-                       
+
+
                         <article class="comments">
-              <h3>COMMENTS</h3>
-              <ul class="media-list">
-                <li class="media">
-                  <div class="media-left">
-                    <a href="#">                
-                      <img src="<?= ADMIN_ASSET_URL ?>img/blog-details-commenter.png" alt="">                
-                    </a>
-                  </div>
-                  <div class="media-body">
-                    <div class="arrow_box">
-                      <div class="comment-block">
-                        <h4><?= $custom_feedback['name']?></h4>
-                        <span><time datetime="2016-05-20">MAY 20, 2016</time></span>
-                      </div> 
-                      <p><?= $custom_feedback['comment']?></p>
-                      <p class="font11">FEEDBACK</p>
-                    </div>
-                    <div class="media">
-                      <div class="col-md-3  ">
-                        <a href="#">                
-                          <img src="<?= ADMIN_ASSET_URL?>img/blog-details-commenter.png" alt="">                
-                        </a>
-                      </div>
-                      <div class="media-body">
-                        <div class="arrow_box">
-                          <div class="comment-block">
-                            <h4><?= $custom_feedback['reply_by']?></h4>
-                            <span><time datetime="2016-05-20">MAY 20, 2016</time></span>
-                          </div> 
-                          <p><?= $custom_feedback['reply_content']?></p>
-                          <p class="font11">REPLY</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </article>
+                            <h3>COMMENTS</h3>
+                            <ul class="media-list">
+                                <li class="media">
+                                    <div class="media-left">
+                                        <a href="#">
+                                            <img src="<?= ADMIN_ASSET_URL ?>img/blog-details-commenter.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="arrow_box">
+                                            <div class="comment-block">
+                                                <h4><?= $custom_feedback['name'] ?></h4>
+                                                <span><time datetime="2016-05-20">MAY 20, 2016</time></span>
+                                            </div>
+                                            <p><?= $custom_feedback['comment'] ?></p>
+                                            <p class="font11">FEEDBACK</p>
+                                        </div>
+                                        <div class="media">
+                                            <div class="col-md-3  ">
+                                                <a href="#">
+                                                    <img src="<?= ADMIN_ASSET_URL ?>img/blog-details-commenter.png" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <div class="arrow_box">
+                                                    <div class="comment-block">
+                                                        <h4><?= $custom_feedback['reply_by'] ?></h4>
+                                                        <span><time datetime="2016-05-20">MAY 20, 2016</time></span>
+                                                    </div>
+                                                    <p><?= $custom_feedback['reply_content'] ?></p>
+                                                    <p class="font11">REPLY</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </article>
                         <div class="rq-submit-review col-md-12 col-xs-12 col-sm-12">
                             <div class="row">
                                 <div class="rq-submit-review-form-wrapper">
                                     <h2>Submit review</h2>
-                                    <form action="<?= ADMIN_URL . 'custom_feedback/save-add.php'?>" method="POST">
+                                    <form action="<?= ADMIN_URL . 'custom_feedback/save-add.php' ?>" method="POST">
                                         <div class="rq-review-form col-md-8 col-sm-12">
                                             <input type="text" class="form-control" name="name" placeholder="Name">
                                             <input type="text" class="form-control" name="email" placeholder="Email">
                                             <textarea class="form-control" rows="5" name="comment" placeholder="Your Comment"></textarea>
                                         </div>
 
-                                       
+
                                         <input type="text" name="room_id" value="<?= $_GET['id'] ?>" hidden>
                                         <button class="rq-btn-primary" type="submit">submit</button>
                                     </form>
@@ -247,6 +256,18 @@ $custom_feedback = queryExecute($getCustom_feedbackQuery, false);
     <?php require_once "public/_share/footer.php" ?>
     </div>
     <?php require_once "public/_share/script.php"; ?>
+    <script type="text/javascript">
+      $('#validate-form').click(function(){
+        
+        var check_in = $("#check_in").val();
+        var check_out = $("#check_out").val();
+        if(check_out < check_in) {
+            alert ('nhập lại');
+        }
+
+      }) ;
+   
+    </script>
 
 </body>
 

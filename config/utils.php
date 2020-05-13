@@ -10,6 +10,7 @@ define('PUBLIC_URL', BASE_URL . 'public/');
 define('ADMIN_ASSET_URL', PUBLIC_URL . 'admin/');
 define('DEFAULT_IMAGE', ADMIN_ASSET_URL . 'img/default-image.jpg');
 
+define('BOOK', 'BOOK_SESSION');
 define('AUTH', 'AUTH_SESSION');
 define("ACTIVE", 1);
 define("INACTIVE", -1);

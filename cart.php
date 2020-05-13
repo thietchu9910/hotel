@@ -1,7 +1,12 @@
 <?php
 session_start();
 require_once "./config/utils.php";
+
 $loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
+if(!isset($_GET['id'])) {
+   header('location: select-room-grid.php?msg=cam on ban đã đặt phòng');
+   die;
+}
 $id = $_GET['id'];
 $getBookingQuery = "select * from booking where id = $id";
 $booking = queryExecute($getBookingQuery, false);
@@ -11,7 +16,19 @@ $room = queryExecute($getRoomQuery, false);
 
 $getServiceQuery = "select * from  service";
 $service = queryExecute($getServiceQuery, true);
-//lấy dữ liệu room đổ sang booking
+
+if(isset($_SESSION[BOOK])) {
+  $booking_id = isset($_SESSION[BOOK]['id']) ? $_SESSION[BOOK]['id'] : "" ;
+  $check_in = isset($_SESSION[BOOK]['check_in']) ? $_SESSION[BOOK]['check_in'] : "";
+  $check_out = isset($_SESSION[BOOK]['check_out']) ? $_SESSION[BOOK]['check_out'] : "";
+  $children = isset($_SESSION[BOOK]['children']) ? $_SESSION[BOOK]['children'] : "";
+  $adults = isset($_SESSION[BOOK]['adults']) ? $_SESSION[BOOK]['adults'] : "";
+}else {
+  header("Location: " . BASE_URL) . "?msg=Chọn phòng loại phòng trước khi thanh toán";
+  die;
+}
+// dd($_SESSION[BOOK]);
+
 ?>
 
 
@@ -68,8 +85,9 @@ $service = queryExecute($getServiceQuery, true);
                   <?php
                   $date1=date_create($booking['check_in']);
                   $date2=date_create($booking['check_out']);
-                  $diff=date_diff($date1,$date2);
+                  $diff=date_diff($date2,$date1);
                   $a = $diff->format('%a');
+                  
                   echo $a;
               
                   
@@ -94,6 +112,7 @@ $service = queryExecute($getServiceQuery, true);
 
   <?= require_once './public/_share/footer.php' ?>
   <?= require_once './public/_share/script.php' ?>
+  
 
 </body>
 
