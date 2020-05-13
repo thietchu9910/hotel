@@ -23,10 +23,9 @@ $date2 = date('m/d/Y', strtotime($check_out));
 if($timeNow - $date1 <= 0) {
   header("Location: " . BASE_URL . "single-room.php?id=$idRoom&msg=Không thể chọn ngày hôm nay và trước ngày hôm nay");
   die;
-}else if($date2 - $date1 <= 0) {
-  header("Location: " . BASE_URL . "single-room.php?id=$idRoom&msg=Không thể chọn ngày nhỏ hơn ngày rời đi");
-  die;
-}else if($date2 - $date1 == 0){
+}
+
+if($date2 - $date1 == 0){
   header("Location: " . BASE_URL . "single-room.php?id=$idRoom&msg=Không thể chọn ngày đến bằng ngày rời đi");
   die;
 }
